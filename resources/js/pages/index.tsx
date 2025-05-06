@@ -6,47 +6,48 @@ import { Head, Link, usePage } from '@inertiajs/react';
 function Body(){
     return(
         <>
+        <Head title="ID-tix" />
         <div className='w-full h-96 bg-[url("@/assets/film1.jpg")] bg-center bg-cover flex justify-end'>
             {/* <img src={film} alt="dontol" className='w-full h-96 bg-cover' /> */}
             <div className='w-48 h-full flex justify-center items-center'>
                 <h1 className='text-white'>dongo</h1>
             </div>
         </div>
-        <main className='w-full flex justify-center p-8 bg-black'>
-            <div className='w-7xl h-full bg-blue-500 flex flex-col gap-4'>
-                <h1 className='text-white text-4xl font-bold bg-amber-950'>Now Showing</h1>
-                <div className='bg-amber-400 h-full w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+        <main className='w-full flex justify-center p-8 dark:bg-main'>
+            <div className='w-7xl h-full flex flex-col gap-4'>
+                <h1 className='text-4xl font-bold'>Now Showing</h1>
+                <div className=' h-full w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                     <div className='flex flex-col w-full'>
                         <a href={route('detail_film')}><div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div></a>
-                        <div className='bg-blue-800 h-12 flex justify-center items-center text-2xl font-semibold text-white'>hanntu</div>
+                        <div className=' h-12 flex justify-center items-center text-2xl font-semibold'>hanntu</div>
                     </div>
                     <div className='flex flex-col w-full'>
                         <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div>
-                        <div className='bg-blue-800 h-12 flex justify-center items-center text-2xl font-semibold text-white'>hanntu</div>
+                        <div className=' h-12 flex justify-center items-center text-2xl font-semibold'>hanntu</div>
                     </div>
                     <div className='flex flex-col w-full'>
                         <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div>
-                        <div className='bg-blue-800 h-12 flex justify-center items-center text-2xl font-semibold text-white'>hanntu</div>
+                        <div className=' h-12 flex justify-center items-center text-2xl font-semibold'>hanntu</div>
                     </div>
                     <div className='flex flex-col w-full'>
                         <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div>
-                        <div className='bg-blue-800 h-12 flex justify-center items-center text-2xl font-semibold text-white'>hanntu</div>
+                        <div className=' h-12 flex justify-center items-center text-2xl font-semibold'>hanntu</div>
                     </div>
                     <div className='flex flex-col w-full'>
                         <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div>
-                        <div className='bg-blue-800 h-12 flex justify-center items-center text-2xl font-semibold text-white'>hanntu</div>
+                        <div className=' h-12 flex justify-center items-center text-2xl font-semibold'>hanntu</div>
                     </div>
                     <div className='flex flex-col w-full'>
                         <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div>
-                        <div className='bg-blue-800 h-12 flex justify-center items-center text-2xl font-semibold text-white'>hanntu</div>
+                        <div className=' h-12 flex justify-center items-center text-2xl font-semibold'>hanntu</div>
                     </div>
                     <div className='flex flex-col w-full'>
                         <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div>
-                        <div className='bg-blue-800 h-12 flex justify-center items-center text-2xl font-semibold text-white'>hanntu</div>
+                        <div className=' h-12 flex justify-center items-center text-2xl font-semibold'>hanntu</div>
                     </div>
                     <div className='flex flex-col w-full'>
                         <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div>
-                        <div className='bg-blue-800 h-12 flex justify-center items-center text-2xl font-semibold text-white'>hanntu</div>
+                        <div className=' h-12 flex justify-center items-center text-2xl font-semibold'>hanntu</div>
                     </div>
                 </div>
             </div>

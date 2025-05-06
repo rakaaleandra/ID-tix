@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FilmController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -31,6 +32,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('pembayaran');
     })->name('pembayaran');
 });
+
+// Route::rescource('films', FilmController::class);
+Route::get('films', [FilmController::class, 'view'])->name('films');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

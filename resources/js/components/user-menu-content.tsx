@@ -3,7 +3,8 @@ import { UserInfo } from '@/components/user-info';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { type User } from '@/types';
 import { Link } from '@inertiajs/react';
-import { LogOut, Settings } from 'lucide-react';
+import { LogOut, Settings, Ticket } from 'lucide-react';
+import Logo from '../assets/Logo.svg';
 
 interface UserMenuContentProps {
     user: User;
@@ -19,6 +20,15 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
                     <UserInfo user={user} showEmail={true} />
                 </div>
             </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+                <DropdownMenuItem asChild>
+                    <Link className="block w-full" href={route('profile.edit')} as="button" prefetch onClick={cleanup}>
+                        <Ticket className="mr-2" />
+                        Ticket
+                    </Link>
+                </DropdownMenuItem>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
