@@ -1,12 +1,16 @@
 <?php
 
+// use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FilmController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('index');
-})->name('home');
+// Route::get('/', function () {
+//     return Inertia::render('index');
+// })->name('home');
+
+Route::get('/', [FilmController::class, 'index'])->name('home');
+Route::resource('home', FilmController::class);
 
 Route::get('detail_film', function () {
     return Inertia::render('detail_film');
@@ -34,7 +38,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // Route::rescource('films', FilmController::class);
-Route::get('films', [FilmController::class, 'view'])->name('films');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
