@@ -13,10 +13,6 @@ class FilmController extends Controller
      */
     public function index()
     {
-        // $films = Film::all();
-        // return Inertia::render('index', [
-        //     'films' => $films
-        // ]);
         return Inertia::render('index',[
             'films' => Film::all()
         ]);
@@ -41,9 +37,12 @@ class FilmController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($film)
     {
-        //
+        return Inertia::render('detail_film',[
+            'film' => Film::find($film),
+            // 'film' => $film
+        ]);
     }
 
     /**

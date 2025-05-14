@@ -10,11 +10,12 @@ use Inertia\Inertia;
 // })->name('home');
 
 Route::get('/', [FilmController::class, 'index'])->name('home');
-Route::resource('home', FilmController::class);
 
-Route::get('detail_film', function () {
-    return Inertia::render('detail_film');
-})->name('detail_film');
+Route::resource('detail_films', FilmController::class)->except('index');
+
+// Route::get('detail_film', function () {
+//     return Inertia::render('detail_film');
+// })->name('detail_film');
 
 Route::get('theater', function () {
     return Inertia::render('theater');

@@ -9,5 +9,15 @@ class Film extends Model
 {
     /** @use HasFactory<\Database\Factories\FilmFactory> */
     use HasFactory;
-    protected $table = "films";
+    protected $fillable = [
+        'nama_film',
+        'durasi_film',
+        'sutradara_film',
+        'genre_film',
+        'prosedur',
+        'produksi',
+        'casts',
+        'sinopsis',
+        'tayang',
+    ];
 }

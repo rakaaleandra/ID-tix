@@ -17,7 +17,15 @@ class FilmFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama_film' => fake()->title(),
+            'durasi_film' => fake()->randomNumber(2),
+            'sutradara_film' => fake()->name(),
+            'genre_film' => fake()->name(),
+            'prosedur' => fake()->name(),
+            'produksi' => fake()->name(),
+            'casts' => fake()->name(),
+            'sinopsis' => fake()->text(),
+            'tayang' => fake()->boolean()
         ];
     }
 }
