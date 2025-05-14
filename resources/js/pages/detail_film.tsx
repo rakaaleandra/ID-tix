@@ -34,7 +34,34 @@ export default function Detail_film({ film } : any) {
                         </div>
                         <div className=' w-3/5 h-full flex flex-col gap-6 text-white'>
                             <h1 className='text-2xl font-bold'>{film.nama_film}</h1>
-                            <div className="flex flex-col gap-2">
+                            <table className='w-full font-semibold text-gray-400'>
+                                <tr>
+                                    <td className="w-1/3">Jenis Film</td>
+                                    <td className="w-1/3 text-center">:</td>
+                                    <td className="w-1/3 text-right">{film.genre_film}</td>
+                                </tr>
+                                <tr>
+                                    <td className="w-1/3">Prosedur</td>
+                                    <td className="w-1/3 text-center">:</td>
+                                    <td className="w-1/3 text-right">{film.prosedur}</td>
+                                </tr>
+                                <tr>
+                                    <td className="w-1/3">Sutradara</td>
+                                    <td className="w-1/3 text-center">:</td>
+                                    <td className="w-1/3 text-right">{film.sutradara_film}</td>
+                                </tr>
+                                <tr>
+                                    <td className="w-1/3">Produksi</td>
+                                    <td className="w-1/3 text-center">:</td>
+                                    <td className="w-1/3 text-right">{film.produksi}</td>
+                                </tr>
+                                <tr>
+                                    <td className="w-1/3">Casts</td>
+                                    <td className="w-1/3 text-center">:</td>
+                                    <td className="w-1/3 text-right">{film.casts}</td>
+                                </tr>
+                            </table>
+                            {/* <div className="flex flex-col gap-2">
                                 <div className='flex justify-between font-semibold text-gray-400 w-full'>
                                     <h1>Jenis Film</h1>
                                     <h1>:</h1>
@@ -60,11 +87,12 @@ export default function Detail_film({ film } : any) {
                                     <h1>:</h1>
                                     <h1>Comedy</h1>
                                 </div>
-                            </div>
+                            </div> */}
                             <h1 className='text-2xl font-bold'>Sinopsis</h1>
                             <div className='text-gray-400 font-semibold'>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sed deserunt aliquid ipsa, officia earum quibusdam maxime maiores perferendis omnis excepturi. Exercitationem alias excepturi dolor qui assumenda eveniet quae doloribus?
+                                    {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sed deserunt aliquid ipsa, officia earum quibusdam maxime maiores perferendis omnis excepturi. Exercitationem alias excepturi dolor qui assumenda eveniet quae doloribus? */}
+                                    {film.sinopsis}
                                 </p>
                             </div>
                             <button className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>
