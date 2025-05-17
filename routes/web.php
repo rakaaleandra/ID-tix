@@ -14,17 +14,19 @@ Route::get('/', [FilmController::class, 'index'])->name('home');
 
 Route::get('Comming-Soon', [FilmController::class, 'index2'])->name('index2');
 
-Route::resource('detail_films', FilmController::class)->except('index', 'index2');
+Route::resource('detail_films', FilmController::class)->except('index', 'index2', 'show2');
 
 Route::get('theater', [TheaterController::class, 'index'])->name('theater');
+
+Route::get('/detail_films/{id}/schedules', [FilmController::class, 'show2'])->name('jadwal');
 
 // Route::get('theater', function () {
 //     return Inertia::render('theater');
 // })->name('theater');
 
-Route::get('jadwal', function () {
-    return Inertia::render('jadwal');
-})->name('jadwal');
+// Route::get('jadwal', function () {
+//     return Inertia::render('jadwal');
+// })->name('jadwal');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

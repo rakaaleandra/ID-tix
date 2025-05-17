@@ -52,6 +52,13 @@ class FilmController extends Controller
         ]);
     }
 
+    public function show2($id){
+        $film = Film::with('schedules')->find($id);
+        return Inertia::render('jadwal',[
+            'film' => $film
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

@@ -1,6 +1,6 @@
 import MainLayout from "@/layouts/app/main-layout";
 import poster from '@/assets/film2.jpg'
-import { usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 interface Film {
     id: number | string;
@@ -68,9 +68,9 @@ export default function Detail_film({ film } : any) {
                                     {film.sinopsis}
                                 </p>
                             </div>{film.tayang ? (
-                                <button className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>
-                                    Lihat Jadwal
-                                </button>
+                                <Link href={route('jadwal', film.id )} className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>Lihat Jadwal</Link>
+                                // <button className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>
+                                ///* </button> */}
                             ): (
                                 null
                             )}
