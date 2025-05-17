@@ -9,4 +9,8 @@ class Theater extends Model
 {
     /** @use HasFactory<\Database\Factories\TheaterFactory> */
     use HasFactory;
+    protected $fillable = [
+        'nama_bioskop',
+        'lokasi_bioskop',
+    ];
 }

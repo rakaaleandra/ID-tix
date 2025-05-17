@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\TheaterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -11,15 +12,15 @@ use Inertia\Inertia;
 
 Route::get('/', [FilmController::class, 'index'])->name('home');
 
-Route::resource('detail_films', FilmController::class)->except('index');
+Route::get('Comming-Soon', [FilmController::class, 'index2'])->name('index2');
 
-// Route::get('detail_film', function () {
-//     return Inertia::render('detail_film');
-// })->name('detail_film');
+Route::resource('detail_films', FilmController::class)->except('index', 'index2');
 
-Route::get('theater', function () {
-    return Inertia::render('theater');
-})->name('theater');
+Route::get('theater', [TheaterController::class, 'index'])->name('theater');
+
+// Route::get('theater', function () {
+//     return Inertia::render('theater');
+// })->name('theater');
 
 Route::get('jadwal', function () {
     return Inertia::render('jadwal');
@@ -37,8 +38,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('pembayaran');
     })->name('pembayaran');
 });
-
-// Route::rescource('films', FilmController::class);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

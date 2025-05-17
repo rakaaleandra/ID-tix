@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('durasi_film');
             $table->string('sutradara_film');
             $table->string('genre_film');
-            $table->string('prosedur');
+            $table->string('produser');
             $table->string('produksi');
             $table->string('casts');
             $table->text('sinopsis');

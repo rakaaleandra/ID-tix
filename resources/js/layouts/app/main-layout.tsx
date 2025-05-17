@@ -35,7 +35,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
                                     <h1 className='font-semibold'>Now Showing</h1>
                                 </div>
                             </a>
-                            <a href={route('dashboard')}>
+                            <a href={route('index2')}>
                             <div className={cn('flex flex-row gap-1 border p-1 text-main2 hover:text-white hover:border-white border-main rounded-lg', {'text-orange-500': currentPath === '/dashboard',})}>
                                     <CalendarDays />
                                     <h1 className='font-semibold'>Comming Soon</h1>

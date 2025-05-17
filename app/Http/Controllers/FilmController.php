@@ -14,7 +14,14 @@ class FilmController extends Controller
     public function index()
     {
         return Inertia::render('index',[
-            'films' => Film::all()
+            // 'films' => Film::all()
+            'films' => Film::where('tayang', true)->get()
+        ]);
+    }
+
+    public function index2(){
+        return Inertia::render('soon',[
+            'films' => Film::where('tayang', false)->get()
         ]);
     }
 

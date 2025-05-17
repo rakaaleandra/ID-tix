@@ -14,7 +14,7 @@ class Film extends Model
         'durasi_film',
         'sutradara_film',
         'genre_film',
-        'prosedur',
+        'produser',
         'produksi',
         'casts',
         'sinopsis',

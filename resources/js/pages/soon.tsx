@@ -25,15 +25,9 @@ interface Props {
 export default function index({ films } : Props){
     return(
         <AppLayout>
-            <div className='w-full h-96 bg-[url("@/assets/film1.jpg")] bg-center bg-cover flex justify-end'>
-                {/* <img src={film} alt="dontol" className='w-full h-96 bg-cover' /> */}
-                <div className='w-48 h-full flex justify-center items-center'>
-                    <h1 className='text-white'>dongo</h1>
-                </div>
-            </div>
             <main className='w-full flex justify-center p-8 dark:bg-main'>
                 <div className='w-7xl h-full flex flex-col gap-4'>
-                    <h1 className='text-4xl font-bold'>Now Showing</h1>
+                    <h1 className='text-4xl font-bold'>Comming Soon</h1>
                     <div className=' h-full w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                         {films.map(film => (
                             <div key={film.id}>

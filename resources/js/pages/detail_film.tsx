@@ -8,7 +8,7 @@ interface Film {
     durasi_film: number;
     sutradara_film: string;
     genre_film: string;
-    prosedur: string;
+    produser: string;
     produksi: string;
     casts: string;
     sinopsis: string;
@@ -43,7 +43,7 @@ export default function Detail_film({ film } : any) {
                                 <tr>
                                     <td className="w-1/3">Prosedur</td>
                                     <td className="w-1/3 text-center">:</td>
-                                    <td className="w-1/3 text-right">{film.prosedur}</td>
+                                    <td className="w-1/3 text-right">{film.produser}</td>
                                 </tr>
                                 <tr>
                                     <td className="w-1/3">Sutradara</td>
@@ -61,43 +61,19 @@ export default function Detail_film({ film } : any) {
                                     <td className="w-1/3 text-right">{film.casts}</td>
                                 </tr>
                             </table>
-                            {/* <div className="flex flex-col gap-2">
-                                <div className='flex justify-between font-semibold text-gray-400 w-full'>
-                                    <h1>Jenis Film</h1>
-                                    <h1>:</h1>
-                                    <h1>{film.genre_film}</h1>
-                                </div>
-                                <div className='flex justify-between font-semibold text-gray-400'>
-                                    <h1>Prosedur</h1>
-                                    <h1>:</h1>
-                                    <h1>Comedy</h1>
-                                </div>
-                                <div className='flex justify-between font-semibold text-gray-400'>
-                                    <h1>Sutradara</h1>
-                                    <h1>:</h1>
-                                    <h1>{film.sutradara_film}</h1>
-                                </div>
-                                <div className='flex justify-between font-semibold text-gray-400'>
-                                    <h1>Produksi</h1>
-                                    <h1>:</h1>
-                                    <h1>Comedy</h1>
-                                </div>
-                                <div className='flex justify-between font-semibold text-gray-400'>
-                                    <h1>Casts</h1>
-                                    <h1>:</h1>
-                                    <h1>Comedy</h1>
-                                </div>
-                            </div> */}
                             <h1 className='text-2xl font-bold'>Sinopsis</h1>
                             <div className='text-gray-400 font-semibold'>
                                 <p>
                                     {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sed deserunt aliquid ipsa, officia earum quibusdam maxime maiores perferendis omnis excepturi. Exercitationem alias excepturi dolor qui assumenda eveniet quae doloribus? */}
                                     {film.sinopsis}
                                 </p>
-                            </div>
-                            <button className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>
-                                Lihat Jadwal
-                            </button>
+                            </div>{film.tayang ? (
+                                <button className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>
+                                    Lihat Jadwal
+                                </button>
+                            ): (
+                                null
+                            )}
                         </div>
                     </div>
                 </main>
