@@ -26,7 +26,9 @@ export default function MainLayout({ children }: PropsWithChildren) {
                 <div className="fixed h-16 w-full bg-blue-200 dark:bg-main flex items-center justify-center p-8 border-b border-main2">
                     <div className="flex w-full max-w-7xl items-center justify-between">
                         <div className='h-full flex items-center justify-center'>
-                            <img src={Logo} alt="" className='w-11' />
+                            <Link href={route('home')}>
+                                <img src={Logo} alt="" className='w-11' />
+                            </Link>
                         </div>
                         <div className='flex flex-row gap-6'>
                             <a href={route('home')}>

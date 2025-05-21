@@ -19,7 +19,7 @@ interface Film {
     film: Film;
   }
 
-export default function Detail_film({ film } : any) {
+export default function Detail_film({ film } : Props) {
     return(
         console.log(film),
         <MainLayout>

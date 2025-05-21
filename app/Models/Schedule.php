@@ -15,13 +15,14 @@ class Schedule extends Model
         'jam_tayang',
         'film_id',
         'theater_id',
+        'harga_tiket'
     ];
 
     public function film(): BelongsTo{
-        return $this->belongsTo(Film::class);
+        return $this->belongsTo(Film::class, 'film_id');
     }
 
     public function theater(): BelongsTo{
-        return $this->belongsTo(Theater::class);
+        return $this->belongsTo(Theater::class, 'theater_id');
     }
 }

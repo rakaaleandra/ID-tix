@@ -13,4 +13,9 @@ class TheaterController extends Controller
             'theaters' => Theater::all()
         ]);
     }
+    public function show(Theater $theater){
+        return Inertia::render('detail_theater',[
+            'theater' => $theater
+        ]);
+    }
 }

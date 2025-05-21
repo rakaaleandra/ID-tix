@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -44,21 +45,28 @@ class FilmController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($film)
+    public function show(Film $film)
     {
         return Inertia::render('detail_film',[
-            'film' => Film::find($film),
-            // 'film' => $film
+            // 'film' => Film::find($film),
+            'film' => $film
         ]);
     }
 
     public function show2($id){
-        $film = Film::with('schedules')->find($id);
+        $film = Film::with(['schedules.theater'])->find($id);
         return Inertia::render('jadwal',[
             'film' => $film
         ]);
     }
 
+    public function show3($film,$schedule){
+
+        return Inertia::render('pembayaran',[
+            'film' => Film::find($film),
+            'schedule' => Schedule::find($schedule)
+        ]);
+    }
     /**
      * Show the form for editing the specified resource.
      */

@@ -23,6 +23,7 @@ return new class extends Migration
             );
             $table->date('tanggal_tayang');
             $table->time('jam_tayang');
+            $table->integer('harga_tiket');
             $table->timestamps();
         });
     }

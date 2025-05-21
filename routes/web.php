@@ -14,11 +14,16 @@ Route::get('/', [FilmController::class, 'index'])->name('home');
 
 Route::get('Comming-Soon', [FilmController::class, 'index2'])->name('index2');
 
-Route::resource('detail_films', FilmController::class)->except('index', 'index2', 'show2');
+// Route::resource('detail_films', FilmController::class)->except('index', 'index2', 'show2');
+Route::get('/detail_films/{film}', [FilmController::class, 'show'])->name('detail_films.show');
+Route::get('/detail_films/{film}/schedules', [FilmController::class, 'show2'])->name('jadwal');
+Route::get('/detail_films/{film}/schedules/{schedule}',[FilmController::class, 'show3'])->name('pembayaran');
 
 Route::get('theater', [TheaterController::class, 'index'])->name('theater');
+Route::get('theater/{theater}', [TheaterController::class, 'show'])->name('theater.show');
 
-Route::get('/detail_films/{id}/schedules', [FilmController::class, 'show2'])->name('jadwal');
+// Route::middleware(['auth', 'verified'])->group(function () {
+// });
 
 // Route::get('theater', function () {
 //     return Inertia::render('theater');
@@ -28,17 +33,10 @@ Route::get('/detail_films/{id}/schedules', [FilmController::class, 'show2'])->na
 //     return Inertia::render('jadwal');
 // })->name('jadwal');
 
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-});
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('pembayaran', function () {
-        return Inertia::render('pembayaran');
-    })->name('pembayaran');
 });
 
 require __DIR__.'/settings.php';
