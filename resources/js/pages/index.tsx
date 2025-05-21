@@ -39,7 +39,7 @@ export default function index({ films } : Props){
                     <div className=' h-full w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                         {films.map(film => (
                             <div key={film.id}>
-                                <Link href={route('detail_films.show',  film.id )} className='flex flex-col w-full'>
+                                <Link href={route('detail_films.show',  film.slug )} className='flex flex-col w-full'>
                                     <img src={`/storage/FilmPoster/${film.poster_film}`} alt="" />
                                     {/* <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div> */}
                                     <div className=' h-20 flex justify-center items-center text-xl font-semibold text-center'>{film.nama_film}</div>

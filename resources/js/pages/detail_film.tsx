@@ -14,6 +14,7 @@ interface Film {
     sinopsis: string;
     poster_film: string;
     tayang: boolean;
+    slug:string;
   }
   
   interface Props {
@@ -69,7 +70,7 @@ export default function Detail_film({ film } : Props) {
                                     {film.sinopsis}
                                 </p>
                             </div>{film.tayang ? (
-                                <Link href={route('jadwal', film.id )} className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>Lihat Jadwal</Link>
+                                <Link href={route('jadwal', film.slug )} className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>Lihat Jadwal</Link>
                                 // <button className='bg-orange-500 hover:bg-main hover:border hover:border-orange-500 h-12 w-full text-white rounded-2xl font-bold'>
                                 ///* </button> */}
                             ): (
