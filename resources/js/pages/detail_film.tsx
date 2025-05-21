@@ -12,6 +12,7 @@ interface Film {
     produksi: string;
     casts: string;
     sinopsis: string;
+    poster_film: string;
     tayang: boolean;
   }
   
@@ -30,7 +31,7 @@ export default function Detail_film({ film } : Props) {
                     </h1>
                     <div className='flex justify-between gap-20'>
                         <div className='w-2/5'>
-                            <img src={poster} alt="" className='object-contain' />
+                            <img src={`/storage/FilmPoster/${film.poster_film}`} alt="" className='object-contain' />
                         </div>
                         <div className=' w-3/5 h-full flex flex-col gap-6 text-white'>
                             <h1 className='text-2xl font-bold'>{film.nama_film}</h1>

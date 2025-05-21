@@ -16,6 +16,8 @@ interface Film {
     casts: string;
     sinopsis: string;
     tayang: boolean;
+    poster_film: string;
+    slug: string;
 }
 
 interface Props {
@@ -38,7 +40,8 @@ export default function index({ films } : Props){
                         {films.map(film => (
                             <div key={film.id}>
                                 <Link href={route('detail_films.show',  film.id )} className='flex flex-col w-full'>
-                                    <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div>
+                                    <img src={`/storage/FilmPoster/${film.poster_film}`} alt="" />
+                                    {/* <div className='bg-amber-800 h-96 w-full bg-[url("@/assets/film2.jpg")] bg-cover'></div> */}
                                     <div className=' h-20 flex justify-center items-center text-xl font-semibold text-center'>{film.nama_film}</div>
                                 </Link>
                             </div>

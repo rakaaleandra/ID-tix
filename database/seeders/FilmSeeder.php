@@ -18,6 +18,8 @@ class FilmSeeder extends Seeder
         $films = [
             [
                 'nama_film' => 'Inception',
+                'slug' => 'inception',
+                'poster_film' => 'Inception.jpg',
                 'durasi_film' => 148,
                 'sutradara_film' => 'Christopher Nolan',
                 'genre_film' => 'Sci-Fi',
@@ -29,6 +31,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'The Matrix',
+                'slug' => 'The-Matrix',
+                'poster_film' => 'TheMatrix.jpg',
                 'durasi_film' => 136,
                 'sutradara_film' => 'Lana Wachowski & Lilly Wachowski',
                 'genre_film' => 'Action, Sci-Fi',
@@ -40,6 +44,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'Parasite',
+                'slug' => 'Parasite',
+                'poster_film' => 'Parasite.jpg',
                 'durasi_film' => 132,
                 'sutradara_film' => 'Bong Joon-ho',
                 'genre_film' => 'Thriller, Drama',
@@ -51,6 +57,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'Spirited Away',
+                'slug' => 'Spirited-Away',
+                'poster_film' => 'SpiritedAway.jpg',
                 'durasi_film' => 125,
                 'sutradara_film' => 'Hayao Miyazaki',
                 'genre_film' => 'Animation, Fantasy',
@@ -62,6 +70,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'The Godfather',
+                'slug' => 'The-Godfather',
+                'poster_film' => 'TheGodfather.jpg',
                 'durasi_film' => 175,
                 'sutradara_film' => 'Francis Ford Coppola',
                 'genre_film' => 'Crime, Drama',
@@ -73,6 +83,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'Bad Genius',
+                'slug' => 'Bad-Genius',
+                'poster_film' => 'BadGenius.jpg',
                 'durasi_film' => 96,
                 'sutradara_film' => 'J.C. Lee',
                 'genre_film' => 'Crime, Drama',
@@ -84,6 +96,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'Ballerina',
+                'slug' => 'Ballerina',
+                'poster_film' => 'Ballerina.jpg',
                 'durasi_film' => 124,
                 'sutradara_film' => 'Len Wiseman',
                 'genre_film' => 'Action, Thriller',
@@ -95,6 +109,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'How To Train Your Dragon',
+                'slug' => 'How-To-Train-Your-Dragon',
+                'poster_film' => 'HowToTrainYourDragon.jpg',
                 'durasi_film' => 125,
                 'sutradara_film' => 'Dean DeBlois',
                 'genre_film' => 'Fantasy',
@@ -106,6 +122,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'Mission: Impossible - The Final Reckoning',
+                'slug' => 'Mission-The-Final-Reckoning',
+                'poster_film' => 'MissionTheFinalReckoning.jpg',
                 'durasi_film' => 169,
                 'sutradara_film' => 'Christopher McQuarrie',
                 'genre_film' => 'Action, Thriller',
@@ -117,6 +135,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'nama_film' => 'Locked',
+                'slug' => 'Locked',
+                'poster_film' => 'Locked.jpg',
                 'durasi_film' => 95,
                 'sutradara_film' => 'David Yarovesky.',
                 'genre_film' => 'Thriller, Suspense',

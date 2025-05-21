@@ -19,7 +19,8 @@ export default function MainLayout({ children }: PropsWithChildren) {
     const currentPath = window.location.pathname;
     return(
         <main>
-            <Head title='ID-tix'>
+            <Head>
+                <title>ID-tix</title>
                 <link rel='icon' href={Logo} />
             </Head>
             <header>
