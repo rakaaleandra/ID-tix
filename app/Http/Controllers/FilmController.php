@@ -21,6 +21,7 @@ class FilmController extends Controller
     }
 
     public function index2(){
+        
         return Inertia::render('soon',[
             'films' => Film::where('tayang', false)->get()
         ]);
@@ -53,8 +54,9 @@ class FilmController extends Controller
         ]);
     }
 
-    public function show2($id){
-        $film = Film::with(['schedules.theater'])->find($id);
+    public function show2(Film $film){
+        $film->load(['schedules.theater']);
+        // $film = Film::with(['schedules.theater'])->find($id);
         return Inertia::render('jadwal',[
             'film' => $film
         ]);
