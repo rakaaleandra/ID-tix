@@ -62,11 +62,11 @@ class FilmController extends Controller
         ]);
     }
 
-    public function show3($film,$schedule){
+    public function show3(Film $film,Schedule $schedule){
 
         return Inertia::render('pembayaran',[
-            'film' => Film::find($film),
-            'schedule' => Schedule::find($schedule)
+            'film' => $film,
+            'schedule' => $schedule
         ]);
     }
     /**

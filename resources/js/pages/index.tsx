@@ -27,6 +27,7 @@ interface Props {
 export default function index({ films } : Props){
     return(
         <AppLayout>
+            <Head title='Home'></Head>
             <div className='w-full h-96 bg-[url("@/assets/film1.jpg")] bg-center bg-cover flex justify-end'>
                 {/* <img src={film} alt="dontol" className='w-full h-96 bg-cover' /> */}
                 <div className='w-48 h-full flex justify-center items-center'>

@@ -25,6 +25,7 @@ interface Props {
 export default function index({ films } : Props){
     return(
         <AppLayout>
+            <Head title='Comming Soon'></Head>
             <main className='w-full flex justify-center p-8 dark:bg-main'>
                 <div className='w-7xl h-full flex flex-col gap-4'>
                     <h1 className='text-4xl font-bold'>Comming Soon</h1>

@@ -30,8 +30,8 @@
             }
         </style>
 
-        {{-- <title inertia>{{ config('app.name', 'ID-tix') }}</title> --}}
-        <title>{{ config('app.name') }}{{ isset($title) ? ' - ' . $title : '' }}</title>
+        <title inertia>{{ config('app.name', 'ID-tix') }}</title>
+        {{-- <title>{{ config('app.name') }}{{ isset($title) ? ' - ' . $title : '' }}</title> --}}
 
 
         <link rel="preconnect" href="https://fonts.bunny.net">

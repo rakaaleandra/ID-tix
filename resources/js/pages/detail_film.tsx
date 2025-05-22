@@ -1,6 +1,6 @@
 import MainLayout from "@/layouts/app/main-layout";
 import poster from '@/assets/film2.jpg'
-import { Link, usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 interface Film {
     id: number | string;
@@ -25,6 +25,7 @@ export default function Detail_film({ film } : Props) {
     return(
         console.log(film),
         <MainLayout>
+            <Head title={film.nama_film}></Head>
             <div className='w-full flex justify-center p-8 bg-main'>
                 <main className='w-7xl h-full  flex flex-col gap-10'>
                     <h1 className='text-white text-4xl font-bold '>

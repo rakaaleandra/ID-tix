@@ -16,7 +16,7 @@
 
 import React from 'react';
 import AppLayout from '@/layouts/app/main-layout';
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 type Theater = {
     id: number;
@@ -34,6 +34,7 @@ type Schedule = {
 type Film = {
     id: number;
     nama_film: string;
+    slug: string;
     schedules: Schedule[];
 };
 
@@ -54,6 +55,7 @@ export default function Jadwal({ film }: Props) {
 
     return (
         <AppLayout>
+            <Head title='Schedule'></Head>
             <h1 className="text-2xl font-bold mb-6">{film.nama_film}</h1>
 
             {Object.entries(groupedSchedules).map(([theaterName, schedules]) => (
@@ -62,7 +64,7 @@ export default function Jadwal({ film }: Props) {
                     <ul className="ml-4 mt-2 list-disc">
                         {schedules.map((schedule) => (
                             <li key={schedule.id}>
-                                <Link href={route('pembayaran', [film.id,schedule.id])}>
+                                <Link href={route('pembayaran', [film.slug,schedule.id])}>
                                     {schedule.tanggal_tayang} - {schedule.jam_tayang}
                                 </Link>
                             </li>
