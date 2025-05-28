@@ -40,7 +40,7 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // if($request->hasFile())
     }
 
     /**

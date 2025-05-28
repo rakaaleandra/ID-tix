@@ -17,6 +17,12 @@ return new class extends Migration
                 table: 'users',
                 indexName: 'pemesanans_user_id_foreign'
             );
+            $table->foreignId('schedule_id')->constrained(
+                table: 'schedules',
+                indexName: 'pemesanans_schedule_id_foreign'
+            );
+            $table->string('bukti_bayar');
+            $table->string('status_pemesanan')->default(false);
             $table->timestamps();
         });
     }
