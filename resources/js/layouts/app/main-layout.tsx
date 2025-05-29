@@ -39,9 +39,9 @@ export default function MainLayout({ children }: PropsWithChildren) {
                                 </div>
                             </Link>
                             <Link href={route('index2')}>
-                            <div className={cn('flex flex-row gap-1 border p-1 text-main2 hover:text-white hover:border-white border-main rounded-lg', {'text-orange-500': currentPath === '/Comming-Soon',})}>
+                            <div className={cn('flex flex-row gap-1 border p-1 text-main2 hover:text-white hover:border-white border-main rounded-lg', {'text-orange-500': currentPath === '/coming-soon',})}>
                                     <CalendarDays />
-                                    <h1 className='font-semibold'>Comming Soon</h1>
+                                    <h1 className='font-semibold'>Coming Soon</h1>
                                 </div>
                             </Link>
                             <Link href={route('theater')}>

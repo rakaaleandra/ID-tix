@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Film;
 use App\Models\Schedule;
+use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class FilmController extends Controller
 {
@@ -40,7 +42,26 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        // if($request->hasFile())
+        $request->validate([
+            'schedule_id' => 'required',
+            'bukti_bayar' => 'required'
+        ]);
+
+
+        $user = Auth::user();
+        if($request->hasFile('bukti_bayar')){
+            $file = $request->file('bukti_bayar');
+            $filename = $user->name . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $bukti_bayar_path = $file->storeAs('bukti_bayar', $filename, 'public');
+
+            Pemesanan::create([
+                'user_id' => $user->id,
+                'schedule_id' => $request->schedule_id,
+                'bukti_bayar' => $bukti_bayar_path ?? null
+            ]);
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -67,6 +88,16 @@ class FilmController extends Controller
         return Inertia::render('pembayaran',[
             'film' => $film,
             'schedule' => $schedule
+        ]);
+    }
+
+    public function show4(){
+        $user = Auth::user();
+        $pesanans = Pemesanan::with(['schedule.film', 'schedule.theater'])
+            ->where('user_id', $user->id)
+            ->get();
+        return Inertia::render('ticket',[
+            'pemesanan' => $pesanans
         ]);
     }
     /**

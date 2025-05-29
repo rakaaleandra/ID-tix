@@ -16,7 +16,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [FilmController::class, 'index'])->name('home');
 
-Route::get('comming-soon', [FilmController::class, 'index2'])->name('index2');
+Route::get('coming-soon', [FilmController::class, 'index2'])->name('index2');
 Route::get('theater', [TheaterController::class, 'index'])->name('theater');
 Route::get('theater/{theater}', [TheaterController::class, 'show'])->name('theater.show');
 
@@ -25,6 +25,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 });
+Route::post('storing', [FilmController::class, 'store'])->name('membayar');
+Route::get('tickets', [FilmController::class, 'show4'])->name('ticket');
 
 Route::get('/{film:slug}', [FilmController::class, 'show'])->name('detail_films.show');
 Route::get('/{film:slug}/schedules', [FilmController::class, 'show2'])->name('jadwal');
