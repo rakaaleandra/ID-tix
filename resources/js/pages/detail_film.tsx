@@ -88,13 +88,15 @@ export default function Detail_Film({ film }: Props) {
               </div>
 
               {/* Action Button */}
-              {film.tayang && (
+              {film.tayang ? (
                 <Link
                   href={route("jadwal", film.slug)}
                   className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 transition-colors duration-200 h-12 w-full text-white rounded-lg font-bold text-lg shadow-lg hover:shadow-xl"
                 >
                   Lihat Jadwal
                 </Link>
+              ):(
+                null
               )}
             </div>
           </div>
