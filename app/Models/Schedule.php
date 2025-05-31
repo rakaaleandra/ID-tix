@@ -29,4 +29,7 @@ class Schedule extends Model
     public function ticket(): HasMany{
         return $this->hasMany(Ticket::class, 'schedule_id');
     }
+    public function pemesanan(): HasMany{
+        return $this->hasMany(Pemesanan::class, 'schedule_id');
+    }
 }

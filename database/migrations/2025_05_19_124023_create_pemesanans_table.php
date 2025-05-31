@@ -22,7 +22,8 @@ return new class extends Migration
                 indexName: 'pemesanans_schedule_id_foreign'
             );
             $table->string('bukti_bayar');
-            $table->string('status_pemesanan')->default(false);
+            // $table->string('status_pemesanan')->default(false);
+            $table->enum('status_pemesanan', ['berhasil', 'gagal', 'masalah', 'null'])->default('null');
             $table->timestamps();
         });
     }
