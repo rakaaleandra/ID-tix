@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Film;
 use App\Models\Schedule;
 use App\Models\Pemesanan;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -44,9 +45,10 @@ class FilmController extends Controller
     {
         $request->validate([
             'schedule_id' => 'required',
-            'bukti_bayar' => 'required'
+            'bukti_bayar' => 'required',
+            'nomor_kursi' => 'required|array',
+            'nomor_kursi.*' => 'string'
         ]);
-
 
         $user = Auth::user();
         if($request->hasFile('bukti_bayar')){
@@ -60,6 +62,14 @@ class FilmController extends Controller
                 'bukti_bayar' => $bukti_bayar_path ?? null
             ]);
         }
+
+        Ticket::where('schedule_id', $request->schedule_id)
+        ->whereIn('nomor_kursi', $request->nomor_kursi)
+        ->where('status_booking', false)
+        ->update([
+            'status_booking' => true,
+            'pemesanan_id' => $request->schedule_id,
+        ]);
 
         return redirect()->route('home');
     }
@@ -110,10 +120,11 @@ class FilmController extends Controller
     }
 
     public function show3(Film $film,Schedule $schedule){
-
+        $seats = Ticket::where('schedule_id', $schedule->id)->get();
         return Inertia::render('pembayaran',[
             'film' => $film,
-            'schedule' => $schedule
+            'schedule' => $schedule,
+            'seats' => $seats
         ]);
     }
 

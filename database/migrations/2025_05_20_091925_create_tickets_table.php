@@ -17,10 +17,10 @@ return new class extends Migration
                 table: 'schedules',
                 indexName: 'tickets_schedule_id_foreign'
             );
-            $table->foreignId('pemesanan_id')->constrained(
+            $table->foreignId('pemesanan_id')->nullable()->constrained(
                 table: 'pemesanans',
                 indexName: 'tickets_pemesanan_id_foreign'
-            )->nullable();
+            );
             $table->boolean('status_booking')->default(false);
             $table->string('nomor_kursi');
             $table->timestamps();
