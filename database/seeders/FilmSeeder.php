@@ -3,8 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Film;
+use App\Models\Theater;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Schedule;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class FilmSeeder extends Seeder
 {
@@ -151,5 +156,78 @@ class FilmSeeder extends Seeder
         foreach ($films as $film) {
             Film::create($film);
         }
+
+        $skejuls = [
+            [
+                'nama_bioskop' => 'DP Mall XXI',
+                'lokasi_bioskop' => 'Semarang'
+            ],
+            [
+                'nama_bioskop' => 'Ambarrukmo XXI',
+                'lokasi_bioskop' => 'Yogyakarta'
+            ],
+            [
+                'nama_bioskop' => 'Solo Paragon XXI',
+                'lokasi_bioskop' => 'Solo'
+            ],
+            [
+                'nama_bioskop' => 'Java Supermall Cinepolis',
+                'lokasi_bioskop' => 'Semarang'
+            ],
+            [
+                'nama_bioskop' => 'Pakuwon Mall Cineplex',
+                'lokasi_bioskop' => 'Solo'
+            ]
+        ];
+
+        foreach ($skejuls as $skejul) {
+            Theater::create($skejul);
+        }
+
+        $Schedules = [];
+
+        // Mulai dari 2023-05-15 selama 7 hari
+        $startDate = Carbon::create(2023, 5, 15);
+
+        for ($x = 0; $x < 5; $x++) {
+            $film_id = $x + 1;
+
+            $showtimes = [
+                [1, ['10:00:00', '12:30:00', '15:00:00', '17:30:00', '20:00:00']],
+                [2, ['09:45:00', '12:00:00', '14:15:00', '16:30:00', '18:45:00']],
+                [3, ['10:15:00', '12:45:00', '15:15:00', '17:45:00', '20:15:00']],
+                [4, ['09:30:00', '11:45:00', '14:00:00', '16:15:00', '18:30:00']],
+                [5, ['10:30:00', '13:00:00', '15:30:00', '18:00:00', '20:30:00']],
+            ];
+
+            // Loop setiap hari selama 7 hari
+            for ($day = 0; $day < 7; $day++) {
+                $currentDate = $startDate->copy()->addDays($day)->format('Y-m-d');
+
+                foreach ($showtimes as [$theater_id, $times]) {
+                    foreach ($times as $jam_tayang) {
+                        $Schedules[] = [
+                            'film_id' => $film_id,
+                            'theater_id' => $theater_id,
+                            'tanggal_tayang' => $currentDate,
+                            'jam_tayang' => $jam_tayang,
+                            'harga_tiket' => 40000,
+                        ];
+                    }
+                }
+            }
+        }
+
+        // Mass insert ke database
+        Schedule::insert($Schedules);
+
+        User::create([
+            'name' => 'Raka Aleandra',
+            'email' => 'r@g.com',
+            'password' => '12345678',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'isAdmin' => true
+        ]);
     }
 }

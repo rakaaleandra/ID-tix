@@ -75,11 +75,37 @@ class FilmController extends Controller
         ]);
     }
 
-    public function show2(Film $film){
-        $film->load(['schedules.theater']);
-        // $film = Film::with(['schedules.theater'])->find($id);
-        return Inertia::render('jadwal',[
-            'film' => $film
+    public function show2(Film $film, Request $request){
+        // $film->load(['schedules.theater']);
+        // return Inertia::render('jadwal',[
+        //     'film' => $film
+        // ]);
+        $tanggal = $request->query('tanggal');
+
+        // Ambil semua tanggal unik
+        $allDates = $film->schedules()
+            ->selectRaw('DISTINCT tanggal_tayang')
+            ->orderBy('tanggal_tayang')
+            ->pluck('tanggal_tayang')
+            ->toArray();
+
+        // Jika tidak ada tanggal di query, pakai yang paling awal
+        $currentDate = $tanggal ?? $allDates[0] ?? now()->toDateString();
+
+        $schedules = $film->schedules()
+            ->with('theater')
+            ->where('tanggal_tayang', $currentDate)
+            ->get();
+
+        return Inertia::render('jadwal', [
+            'film' => [
+                'id' => $film->id,
+                'nama_film' => $film->nama_film,
+                'slug' => $film->slug,
+                'schedules' => $schedules,
+            ],
+            'allDates' => $allDates,
+            'currentDate' => $currentDate,
         ]);
     }
 

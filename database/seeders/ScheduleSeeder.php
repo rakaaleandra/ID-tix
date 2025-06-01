@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Schedule;
 
 class ScheduleSeeder extends Seeder
 {
@@ -13,81 +12,33 @@ class ScheduleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        $Schedules = [
-            [
-                'film_id' => 1,
-                'theater_id' => 1,
-                'tanggal_tayang' => '2023-05-15',
-                'jam_tayang' => '10:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 2,
-                'theater_id' => 2,
-                'tanggal_tayang' => '2023-05-16',
-                'jam_tayang' => '12:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 1,
-                'theater_id' => 1,
-                'tanggal_tayang' => '2023-05-17',
-                'jam_tayang' => '14:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 2,
-                'theater_id' => 2,
-                'tanggal_tayang' => '2023-05-18',
-                'jam_tayang' => '16:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 1,
-                'theater_id' => 1,
-                'tanggal_tayang' => '2023-05-19',
-                'jam_tayang' => '18:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 1,
-                'theater_id' => 1,
-                'tanggal_tayang' => '2023-05-20',
-                'jam_tayang' => '20:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 1,
-                'theater_id' => 1,
-                'tanggal_tayang' => '2023-05-21',
-                'jam_tayang' => '22:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 2,
-                'theater_id' => 2,
-                'tanggal_tayang' => '2023-05-22',
-                'jam_tayang' => '00:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 2,
-                'theater_id' => 2,
-                'tanggal_tayang' => '2023-05-23',
-                'jam_tayang' => '02:00:00',
-                'harga_tiket'=> 40000
-            ],
-            [
-                'film_id' => 1,
-                'theater_id' => 2,
-                'tanggal_tayang' => '2023-05-24',
-                'jam_tayang' => '04:00:00',
-                'harga_tiket'=> 40000
-            ]
-        ];
-        foreach ($Schedules as $Schedule) {
-            Schedule::create($Schedule);
-        }
+        // $Schedules = [];
+
+        // for ($x = 0; $x < 5; $x++) {
+        //     $film_id = $x + 1;
+
+        //     $showtimes = [
+        //         [1, ['10:00:00', '12:30:00', '15:00:00', '17:30:00', '20:00:00']],
+        //         [2, ['09:45:00', '12:00:00', '14:15:00', '16:30:00', '18:45:00']],
+        //         [3, ['10:15:00', '12:45:00', '15:15:00', '17:45:00', '20:15:00']],
+        //         [4, ['09:30:00', '11:45:00', '14:00:00', '16:15:00', '18:30:00']],
+        //         [5, ['10:30:00', '13:00:00', '15:30:00', '18:00:00', '20:30:00']],
+        //     ];
+
+        //     foreach ($showtimes as [$theater_id, $times]) {
+        //         foreach ($times as $jam_tayang) {
+        //             $Schedules[] = [
+        //                 'film_id' => $film_id,
+        //                 'theater_id' => $theater_id,
+        //                 'tanggal_tayang' => '2023-05-15',
+        //                 'jam_tayang' => $jam_tayang,
+        //                 'harga_tiket' => 40000,
+        //             ];
+        //         }
+        //     }
+        // }
+
+        // // Mass insert
+        // Schedule::insert($Schedules);
     }
 }
