@@ -47,7 +47,8 @@ class FilmController extends Controller
             'schedule_id' => 'required',
             'bukti_bayar' => 'required',
             'nomor_kursi' => 'required|array',
-            'nomor_kursi.*' => 'string'
+            'nomor_kursi.*' => 'string',
+            'total_bayar' => 'required'
         ]);
 
         $user = Auth::user();
@@ -56,10 +57,11 @@ class FilmController extends Controller
             $filename = $user->name . '_' . time() . '.' . $file->getClientOriginalExtension();
             $bukti_bayar_path = $file->storeAs('bukti_bayar', $filename, 'public');
 
-            Pemesanan::create([
+            $pemesanan = Pemesanan::create([
                 'user_id' => $user->id,
                 'schedule_id' => $request->schedule_id,
-                'bukti_bayar' => $bukti_bayar_path ?? null
+                'bukti_bayar' => $bukti_bayar_path ?? null,
+                'total_bayar' => $request->total_bayar
             ]);
         }
 
@@ -68,7 +70,7 @@ class FilmController extends Controller
         ->where('status_booking', false)
         ->update([
             'status_booking' => true,
-            'pemesanan_id' => $request->schedule_id,
+            'pemesanan_id' => $pemesanan->id,
         ]);
 
         return redirect()->route('home');
@@ -135,6 +137,20 @@ class FilmController extends Controller
             ->get();
         return Inertia::render('ticket',[
             'pemesanan' => $pesanans
+        ]);
+    }
+
+
+    public function show5(Pemesanan $pemesanan){
+        // return Inertia::render('detail_ticket', [
+        //     'pemesanan' => $pemesanan->with(['schedule.film', 'schedule.theater']),
+        //     'tickets' => Ticket::where('pemesanan_id', $pemesanan->id)->get()
+        // ]);
+        $pemesanan->load(['schedule.film', 'schedule.theater']);
+
+        return Inertia::render('detail_ticket', [
+            'pemesanan' => $pemesanan,
+            'tickets' => Ticket::where('pemesanan_id', $pemesanan->id)->get()
         ]);
     }
     /**

@@ -27,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 Route::post('storing', [FilmController::class, 'store'])->name('membayar');
 Route::get('tickets', [FilmController::class, 'show4'])->name('ticket');
+Route::get('ticket/{pemesanan}', [FilmController::class, 'show5'])->name('detail_ticket');
 
 Route::get('/{film:slug}', [FilmController::class, 'show'])->name('detail_films.show');
 Route::get('/{film:slug}/schedules', [FilmController::class, 'show2'])->name('jadwal');

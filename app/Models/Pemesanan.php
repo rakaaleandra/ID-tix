@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pemesanan extends Model
 {
@@ -14,7 +15,8 @@ class Pemesanan extends Model
         'user_id',
         'schedule_id',
         'bukti_bayar',
-        'status_pemesanan'
+        'status_pemesanan',
+        'total_bayar'
     ];
 
     public function user(): BelongsTo{
@@ -22,5 +24,8 @@ class Pemesanan extends Model
     }
     public function schedule(): BelongsTo{
         return $this->belongsTo(Schedule::class, 'schedule_id');
+    }
+    public function ticket(): HasMany{
+        return $this->hasMany(Ticket::class, 'pemesanan_id');
     }
 }

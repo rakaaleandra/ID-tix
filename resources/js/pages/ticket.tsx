@@ -38,7 +38,7 @@
 
 import AppLayout from "@/layouts/app/main-layout"
 import React from 'react';
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 interface Film {
   id: number;
@@ -89,13 +89,15 @@ const PesananIndex: React.FC = () => {
             <tbody>
               {pemesanan.map((pesanan, index) => (
                 <tr key={pesanan.id}>
-                  <td className="border px-4 py-2">{index + 1}</td>
-                  <td className="border px-4 py-2">{pesanan.schedule.film.nama_film}</td>
-                  <td className="border px-4 py-2">{pesanan.schedule.jam_tayang }</td>
-                  <td className="border px-4 py-2">{pesanan.schedule.theater.nama_bioskop }</td>
-                  <td className="border px-4 py-2">
-                    {new Date(pesanan.created_at).toLocaleString('id-ID')}
-                  </td>
+                  <Link href={route('detail_ticket', pesanan.id)}>
+                    <td className="border px-4 py-2">{index + 1}</td>
+                    <td className="border px-4 py-2">{pesanan.schedule.film.nama_film}</td>
+                    <td className="border px-4 py-2">{pesanan.schedule.jam_tayang }</td>
+                    <td className="border px-4 py-2">{pesanan.schedule.theater.nama_bioskop }</td>
+                    <td className="border px-4 py-2">
+                      {new Date(pesanan.created_at).toLocaleString('id-ID')}
+                    </td>
+                  </Link>
                 </tr>
               ))}
             </tbody>
