@@ -52,27 +52,27 @@ export default function Detail_Film({ film }: Props) {
                   <tbody className="space-y-3">
                     <tr className="border-b border-gray-700 last:border-b-0">
                       <td className="py-2 text-gray-300 font-medium">Jenis Film</td>
-                      <td className="py-2 text-center text-gray-500">:</td>
+                      {/* <td className="py-2 text-center text-gray-500">:</td> */}
                       <td className="py-2 text-right text-white">{film.genre_film}</td>
                     </tr>
                     <tr className="border-b border-gray-700 last:border-b-0">
                       <td className="py-2 text-gray-300 font-medium">Produser</td>
-                      <td className="py-2 text-center text-gray-500">:</td>
+                      {/* <td className="py-2 text-center text-gray-500">:</td> */}
                       <td className="py-2 text-right text-white">{film.produser}</td>
                     </tr>
                     <tr className="border-b border-gray-700 last:border-b-0">
                       <td className="py-2 text-gray-300 font-medium">Sutradara</td>
-                      <td className="py-2 text-center text-gray-500">:</td>
+                      {/* <td className="py-2 text-center text-gray-500">:</td> */}
                       <td className="py-2 text-right text-white">{film.sutradara_film}</td>
                     </tr>
                     <tr className="border-b border-gray-700 last:border-b-0">
                       <td className="py-2 text-gray-300 font-medium">Produksi</td>
-                      <td className="py-2 text-center text-gray-500">:</td>
+                      {/* <td className="py-2 text-center text-gray-500">:</td> */}
                       <td className="py-2 text-right text-white">{film.produksi}</td>
                     </tr>
                     <tr className="border-b border-gray-700 last:border-b-0">
                       <td className="py-2 text-gray-300 font-medium">Casts</td>
-                      <td className="py-2 text-center text-gray-500">:</td>
+                      {/* <td className="py-2 text-center text-gray-500">:</td> */}
                       <td className="py-2 text-right text-white">{film.casts}</td>
                     </tr>
                   </tbody>

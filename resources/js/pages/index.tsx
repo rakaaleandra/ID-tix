@@ -46,7 +46,7 @@ export default function Index({ films }: Props) {
 
       {/* Main Content */}
       <main className="w-full bg-white dark:bg-main">
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="container mx-auto py-8 max-w-7xl">
           <div className="space-y-8">
             <header>
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Now Showing</h1>

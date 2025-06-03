@@ -159,23 +159,23 @@ class FilmSeeder extends Seeder
 
         $skejuls = [
             [
-                'nama_bioskop' => 'DP Mall XXI',
-                'lokasi_bioskop' => 'Semarang'
-            ],
-            [
-                'nama_bioskop' => 'Ambarrukmo XXI',
-                'lokasi_bioskop' => 'Yogyakarta'
+                'nama_bioskop' => 'Grand XXI Solo',
+                'lokasi_bioskop' => 'Solo'
             ],
             [
                 'nama_bioskop' => 'Solo Paragon XXI',
                 'lokasi_bioskop' => 'Solo'
             ],
             [
-                'nama_bioskop' => 'Java Supermall Cinepolis',
-                'lokasi_bioskop' => 'Semarang'
+                'nama_bioskop' => 'Solo Square XXI',
+                'lokasi_bioskop' => 'Solo'
             ],
             [
-                'nama_bioskop' => 'Pakuwon Mall Cineplex',
+                'nama_bioskop' => 'The Park XXI',
+                'lokasi_bioskop' => 'Solo'
+            ],
+            [
+                'nama_bioskop' => 'Transmart Solo CGV',
                 'lokasi_bioskop' => 'Solo'
             ]
         ];
@@ -190,28 +190,28 @@ class FilmSeeder extends Seeder
         $startDate = Carbon::create(2023, 5, 15);
 
         for ($x = 0; $x < 5; $x++) {
-            $film_id = $x + 1;
+            $theater_id = $x + 1;
 
             $showtimes = [
-                [1, ['10:00:00', '12:30:00', '15:00:00', '17:30:00', '20:00:00']],
-                [2, ['09:45:00', '12:00:00', '14:15:00', '16:30:00', '18:45:00']],
-                [3, ['10:15:00', '12:45:00', '15:15:00', '17:45:00', '20:15:00']],
-                [4, ['09:30:00', '11:45:00', '14:00:00', '16:15:00', '18:30:00']],
-                [5, ['10:30:00', '13:00:00', '15:30:00', '18:00:00', '20:30:00']],
+                [1, ['12:00:00', '14:20:00', '16:40:00', '19:00:00', '21:20:00']],
+                [2, ['12:10:00', '14:25:00', '16:40:00', '18:45:00', '21:00:00']],
+                [3, ['12:30:00', '14:30:00', '16:30:00', '18:30:00', '20:30:00']],
+                [4, ['12:35:00', '14:40:00', '16:45:00', '18:50:00', '20:55:00']],
+                [5, ['14:05:00', '17:10:00', '20:15:00']],
             ];
 
-            // Loop setiap hari selama 7 hari
-            for ($day = 0; $day < 7; $day++) {
+            // Loop setiap hari selama 5 hari
+            for ($day = 0; $day < 5; $day++) {
                 $currentDate = $startDate->copy()->addDays($day)->format('Y-m-d');
 
-                foreach ($showtimes as [$theater_id, $times]) {
+                foreach ($showtimes as [$film_id, $times]) {
                     foreach ($times as $jam_tayang) {
                         $Schedules[] = [
-                            'film_id' => $film_id,
-                            'theater_id' => $theater_id,
+                            'film_id' => $theater_id,
+                            'theater_id' => $film_id,
                             'tanggal_tayang' => $currentDate,
                             'jam_tayang' => $jam_tayang,
-                            'harga_tiket' => 40000,
+                            'harga_tiket' => 25000,
                         ];
                     }
                 }
@@ -224,6 +224,14 @@ class FilmSeeder extends Seeder
         User::create([
             'name' => 'Raka Aleandra',
             'email' => 'r@g.com',
+            'password' => '12345678',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'isAdmin' => false
+        ]);
+        User::create([
+            'name' => 'Raka Aleandra Admin',
+            'email' => 'raka.aleandra@gmail.com',
             'password' => '12345678',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),

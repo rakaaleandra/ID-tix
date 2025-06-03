@@ -75,33 +75,37 @@ const PesananIndex: React.FC = () => {
 
   return (
       <AppLayout>
-          <h1 className="text-2xl font-semibold mb-4">Daftar Pesanan Saya</h1>
-          <table className="table-auto w-full border">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border px-4 py-2">No</th>
-                <th className="border px-4 py-2">Nama Film</th>
-                <th className="border px-4 py-2">Jadwal Tayang</th>
-                <th className="border px-4 py-2">Lokasi</th>
-                <th className="border px-4 py-2">Tanggal Dipesan</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pemesanan.map((pesanan, index) => (
-                <tr key={pesanan.id}>
-                  <Link href={route('detail_ticket', pesanan.id)}>
-                    <td className="border px-4 py-2">{index + 1}</td>
-                    <td className="border px-4 py-2">{pesanan.schedule.film.nama_film}</td>
-                    <td className="border px-4 py-2">{pesanan.schedule.jam_tayang }</td>
-                    <td className="border px-4 py-2">{pesanan.schedule.theater.nama_bioskop }</td>
-                    <td className="border px-4 py-2">
-                      {new Date(pesanan.created_at).toLocaleString('id-ID')}
-                    </td>
-                  </Link>
+        <main className="w-full flex justify-center dark:bg-main">
+          <div className="w-7xl bg-main py-8">
+            <h1 className="text-2xl font-semibold mb-4">Daftar Pesanan Saya</h1>
+            <table className="table-auto w-full border">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="border px-4 py-2">No</th>
+                  <th className="border px-4 py-2">Nama Film</th>
+                  <th className="border px-4 py-2">Jadwal Tayang</th>
+                  <th className="border px-4 py-2">Lokasi</th>
+                  <th className="border px-4 py-2">Tanggal Dipesan</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {pemesanan.map((pesanan, index) => (
+                  <tr key={pesanan.id}>
+                    <Link href={route('detail_ticket', pesanan.id)}>
+                      <td className="border px-4 py-2">{index + 1}</td>
+                      <td className="border px-4 py-2">{pesanan.schedule.film.nama_film}</td>
+                      <td className="border px-4 py-2">{pesanan.schedule.jam_tayang }</td>
+                      <td className="border px-4 py-2">{pesanan.schedule.theater.nama_bioskop }</td>
+                      <td className="border px-4 py-2">
+                        {new Date(pesanan.created_at).toLocaleString('id-ID')}
+                      </td>
+                    </Link>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </main>
       </AppLayout>
   );
 };
