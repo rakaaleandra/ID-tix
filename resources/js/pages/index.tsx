@@ -64,7 +64,6 @@ export default function Index({ films }: Props) {
                       <img
                         src={`/storage/FilmPoster/${film.poster_film}`}
                         alt={film.nama_film}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
                     <div className="p-4">
