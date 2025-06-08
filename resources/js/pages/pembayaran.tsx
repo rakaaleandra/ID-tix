@@ -1,5 +1,5 @@
 import AppLayout from "@/layouts/app/main-layout";
-import { useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import React, { useMemo } from "react";
 
 interface Seats {
@@ -54,6 +54,7 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
 
   return (
     <AppLayout>
+      <Head title={`${film.nama_film} ${schedule.tanggal_tayang}`} />
       <main className="w-full flex justify-center p-8 bg-gray-100 dark:bg-main min-h-screen transition-colors">
         <div className="w-full max-w-7xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 shadow-lg dark:shadow-black/30 rounded-xl p-8 flex flex-col md:flex-row gap-10 transition-all">
           

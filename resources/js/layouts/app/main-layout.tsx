@@ -11,7 +11,7 @@ import { UserMenuContent } from '@/components/user-menu-content';
 import { useInitials } from '@/hooks/use-initials';
 import { type PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
-import { ChevronDown, CalendarDays, MapPin } from 'lucide-react';
+import { ChevronDown, CalendarDays, MapPin, House } from 'lucide-react';
 
 export default function MainLayout({ children }: PropsWithChildren) {
     const { auth } = usePage<SharedData>().props;
@@ -34,7 +34,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
                         <div className='flex flex-row gap-6'>
                             <Link href={route('home')}>
                                 <div className={cn('flex flex-row gap-1 border p-1 text-main2 hover:text-white hover:border-white border-main rounded-lg', {'text-orange-500': currentPath === '/',})}>
-                                    <ChevronDown />
+                                    <House />
                                     <h1 className='font-semibold'>Now Showing</h1>
                                 </div>
                             </Link>
