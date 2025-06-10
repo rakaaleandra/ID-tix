@@ -1,113 +1,112 @@
-// import AppLayout from "@/layouts/app/main-layout"
-// import { Link } from "@inertiajs/react";
-
-// interface Prop{
-//     id: number | string;
-    
-// }
-
-// export default function Ticket({pemesanan}:any){
-//     return(
-//         <AppLayout>
-//             <div>
-//             <h1 className="text-xl font-bold mb-4">Daftar Pesanan Saya</h1>
-//             <table className="table-auto w-full border">
-//                 <thead>
-//                     <tr className="bg-gray-100">
-//                         <th className="border px-4 py-2">No</th>
-//                         <th className="border px-4 py-2">Nama Film</th>
-//                         <th className="border px-4 py-2">Jadwal Tayang</th>
-//                         <th className="border px-4 py-2">Waktu Dipesan</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {pesanans.map((pesanan, index) => (
-//                         <tr key={pesanan.id}>
-//                             <td className="border px-4 py-2">{index + 1}</td>
-//                             <td className="border px-4 py-2">{pesanan.schedule.film.nama}</td>
-//                             <td className="border px-4 py-2">{pesanan.schedule.jadwal_tayang}</td>
-//                             <td className="border px-4 py-2">{new Date(pesanan.created_at).toLocaleString()}</td>
-//                         </tr>
-//                     ))}
-//                 </tbody>
-//             </table>
-//             </div>
-//         </AppLayout>
-//     );
-// }
-
 import AppLayout from "@/layouts/app/main-layout"
-import React from 'react';
-import { Link, usePage } from '@inertiajs/react';
+import type React from "react"
+import { Link, usePage } from "@inertiajs/react"
+import { MapPin, Calendar, Clock, Users } from "lucide-react"
 
 interface Film {
-  id: number;
-  nama_film: string;
+  id: number
+  nama_film: string
 }
 
 interface Theater {
-  id: number;
-  nama_bioskop: string;
-  lokasi_bioskop: string;
+  id: number
+  nama_bioskop: string
+  lokasi_bioskop: string
 }
 
 interface Schedule {
-  id: number;
-  tanggal_tayang: string;
-  jam_tayang: string;
-  film: Film;
-  theater: Theater;
+  id: number
+  tanggal_tayang: string
+  jam_tayang: string
+  film: Film
+  theater: Theater
 }
 
 interface Pemesanan {
-  id: number;
-  schedule: Schedule;
-  created_at: string;
+  id: number
+  schedule: Schedule
+  created_at: string
 }
 
 interface PageProps {
-    pemesanan: Pemesanan[];
-  [key: string]: unknown;
+  pemesanan: Pemesanan[]
+  [key: string]: unknown
 }
 
 const PesananIndex: React.FC = () => {
-    const { pemesanan } = usePage<PageProps>().props;
+  const { pemesanan } = usePage<PageProps>().props
 
   return (
-      <AppLayout>
-        <main className="w-full flex justify-center dark:bg-main">
-          <div className="w-7xl bg-main py-8">
-            <h1 className="text-2xl font-semibold mb-4">Daftar Pesanan Saya</h1>
-            <table className="table-auto w-full border">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="border px-4 py-2">No</th>
-                  <th className="border px-4 py-2">Nama Film</th>
-                  <th className="border px-4 py-2">Jadwal Tayang</th>
-                  <th className="border px-4 py-2">Lokasi</th>
-                  <th className="border px-4 py-2">Tanggal Dipesan</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pemesanan.map((pesanan, index) => (
-                  <tr key={pesanan.id}>
-                    <Link href={route('detail_ticket', pesanan.id)}>
-                      <td className="border px-4 py-2">{index + 1}</td>
-                      <td className="border px-4 py-2">{pesanan.schedule.film.nama_film}</td>
-                      <td className="border px-4 py-2">{pesanan.schedule.jam_tayang }</td>
-                      <td className="border px-4 py-2">{pesanan.schedule.theater.nama_bioskop }</td>
-                      <td className="border px-4 py-2">
-                        {new Date(pesanan.created_at).toLocaleString('id-ID')}
-                      </td>
-                    </Link>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+    <AppLayout>
+      <main className="w-full min-h-screen bg-gray-50 dark:bg-main">
+        <div className="container mx-auto px-4 py-6 max-w-4xl">
+          {/* Header */}
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">My Tickets</h1>
+            <p className="text-gray-600 dark:text-gray-400">Manage your movie bookings</p>
           </div>
-        </main>
-      </AppLayout>
-  );
-};
 
-export default PesananIndex;
+          {/* Tickets List */}
+          <div className="space-y-4">
+            {pemesanan.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="text-gray-400 dark:text-gray-600 mb-4">
+                  <Users className="w-16 h-16 mx-auto mb-4" />
+                </div>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No tickets found</h3>
+                <p className="text-gray-500 dark:text-gray-400">You haven't booked any movies yet.</p>
+              </div>
+            ) : (
+              pemesanan.map((pesanan) => (
+                <Link key={pesanan.id} href={route("detail_ticket", pesanan.id)} className="block">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-200">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                          {pesanan.schedule.film.nama_film}
+                        </h3>
+
+                        <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
+                          <MapPin className="w-4 h-4 mr-2" />
+                          <span className="text-sm">{pesanan.schedule.theater.nama_bioskop}</span>
+                        </div>
+
+                        <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          <span className="text-sm">{pesanan.schedule.tanggal_tayang}</span>
+                        </div>
+
+                        <div className="flex items-center text-gray-600 dark:text-gray-400">
+                          <Clock className="w-4 h-4 mr-2" />
+                          <span className="text-sm">{pesanan.schedule.jam_tayang}</span>
+                        </div>
+                      </div>
+
+                      <div className="text-right">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                          Success
+                        </span>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                          Booked: {new Date(pesanan.created_at).toLocaleDateString("id-ID")}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600 dark:text-gray-400">Ticket ID: #{pesanan.id}</span>
+                        <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">View Details →</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))
+            )}
+          </div>
+        </div>
+      </main>
+    </AppLayout>
+  )
+}
+
+export default PesananIndex
