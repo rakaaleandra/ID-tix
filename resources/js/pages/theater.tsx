@@ -17,11 +17,11 @@ export default function Theater({ theaters }: Props) {
   return (
     <AppLayout>
       <Head title="Theater" />
-      <div className="min-h-screen bg-gray-50 dark:bg-main">
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="min-h-screen bg-gray-50 dark:bg-main flex justify-center">
+        <div className="container mx-8 py-12 max-w-7xl">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">Our Theaters</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">Theaters</h1>
             <p className="text-gray-600 dark:text-gray-300">Find the perfect cinema location near you</p>
           </div>
 
@@ -29,45 +29,49 @@ export default function Theater({ theaters }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {theaters.map((theater) => (
               <div key={theater.id} className="group">
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-[1.02]">
-                  {/* Theater Image */}
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img
-                      src={Cinema}
-                      alt={theater.nama_bioskop}
-                    />
-                  </div>
-
-                  {/* Theater Info */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{theater.nama_bioskop}</h3>
-
-                    <div className="mb-4">
-                      <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">
-                        {theater.nama_bioskop}
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {theater.lokasi_bioskop}
-                      </p>
+                <Link
+                  href={route("theater.show", theater.id)}
+                >
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-[1.02]">
+                    {/* Theater Image */}
+                    <div className="overflow-hidden">
+                      <img
+                        src={Cinema}
+                        alt={theater.nama_bioskop}
+                      />
                     </div>
 
-                    {/* See Details Button */}
-                    <Link
-                      href={route("theater.show", theater.id)}
-                      className="inline-flex items-center text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300 font-semibold text-sm transition-colors duration-200 group/link"
-                    >
-                      See Details
-                      <svg
-                        className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-200"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    {/* Theater Info */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{theater.nama_bioskop}</h3>
+
+                      <div className="mb-4">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">
+                          {theater.nama_bioskop}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                          {theater.lokasi_bioskop}
+                        </p>
+                      </div>
+
+                      {/* See Details Button */}
+                      <span
+                        // href={route("theater.show", theater.id)}
+                        className="inline-flex items-center text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300 font-semibold text-sm transition-colors duration-200 group/link"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
+                        See Details
+                        <svg
+                          className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-200"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

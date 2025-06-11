@@ -28,8 +28,8 @@ export default function Index({ films }: Props) {
   return (
     <AppLayout>
       <Head title="Coming Soon" />
-      <main className="w-full bg-white dark:bg-main">
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <main className="w-full bg-white dark:bg-main flex justify-center">
+        <div className="container mx-8 my-12 max-w-7xl">
           <div className="space-y-8">
             {/* Header */}
             <header>
@@ -44,7 +44,7 @@ export default function Index({ films }: Props) {
                 <div key={film.id} className="group">
                   <Link
                     href={route("detail_films.show", film.slug)}
-                    className="block bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-105"
+                    className="block bg-white dark:bg-gray-900 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-105"
                   >
                     <div className="aspect-[3/4] overflow-hidden">
                       <img

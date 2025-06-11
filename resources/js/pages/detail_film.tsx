@@ -1,11 +1,14 @@
 import MainLayout from "@/layouts/app/main-layout"
 import { Head, Link, usePage } from "@inertiajs/react"
+import { useState } from "react"
+import { Youtube } from 'lucide-react';
 
 interface Film {
   id: number | string
   nama_film: string
   durasi_film: number
   sutradara_film: string
+  trailer_film: string
   genre_film: string
   produser: string
   produksi: string
@@ -21,15 +24,15 @@ interface Props {
 }
 
 export default function Detail_Film({ film }: Props) {
+  const [showTrailer, setShowTrailer] = useState(false)
   return (
     <MainLayout>
       <Head title={film.nama_film} />
-      <div className="w-full min-h-screen bg-main">
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="w-full min-h-screen bg-main flex justify-center">
+        <div className="container mx-8 my-12 max-w-7xl">
           <header className="mb-8">
             <h1 className="text-white text-3xl md:text-4xl font-bold">Now Showing</h1>
           </header>
-
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Poster Section */}
             <div className="w-full lg:w-2/5">
@@ -41,11 +44,15 @@ export default function Detail_Film({ film }: Props) {
                 />
               </div>
             </div>
-
             {/* Content Section */}
-            <div className="w-full lg:w-3/5 flex flex-col gap-6 text-white">
-              <h2 className="text-2xl md:text-3xl font-bold text-white">{film.nama_film}</h2>
-
+            <div className="w-full lg:w-3/5 flex flex-col gap-6 text-white dark:bg-gray-900 rounded-lg p-8">
+              <h2 className="text-2xl md:text-3xl font-bold dark:text-white">{film.nama_film}</h2>
+              {/* <div className="text-lg dark:text-gray-400 w-fit text-left flex items-center gap-3 hover:text-white" onClick={() => setShowTrailer(true)}>
+                <Youtube className="hover:text-white"/>
+                <h3 className="hover:text-white">
+                  Lihat Trailer
+                </h3>
+              </div> */}
               {/* Film Details Table */}
               <div className="bg-gray-800/50 rounded-lg p-6">
                 <table className="w-full text-sm md:text-base">
@@ -82,26 +89,63 @@ export default function Detail_Film({ film }: Props) {
               {/* Synopsis Section */}
               <div className="space-y-4">
                 <h3 className="text-xl md:text-2xl font-bold text-white">Sinopsis</h3>
-                <div className="bg-gray-800/30 rounded-lg p-4">
+                <div className="bg-gray-800/50 rounded-lg p-4">
                   <p className="text-gray-300 leading-relaxed text-sm md:text-base">{film.sinopsis}</p>
                 </div>
               </div>
 
               {/* Action Button */}
-              {film.tayang ? (
-                <Link
-                  href={route("jadwal", film.slug)}
+              <div className="flex gap-8">
+                {/* <Link
+                    href={route("jadwal", film.slug)}
+                    className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 transition-colors duration-200 h-12 w-full text-white rounded-lg font-bold text-lg shadow-lg hover:shadow-xl"
+                  >
+                    Lihat Trailer
+                  </Link> */}
+                <button
+                  onClick={() => setShowTrailer(true)}
                   className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 transition-colors duration-200 h-12 w-full text-white rounded-lg font-bold text-lg shadow-lg hover:shadow-xl"
                 >
-                  Lihat Jadwal
-                </Link>
-              ):(
-                null
-              )}
+                  Lihat Trailer
+                </button>
+                {film.tayang ? (
+                  <Link
+                    href={route("jadwal", film.slug)}
+                    className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 transition-colors duration-200 h-12 w-full text-white rounded-lg font-bold text-lg shadow-lg hover:shadow-xl"
+                  >
+                    Lihat Jadwal
+                  </Link>
+                ):(
+                  null
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      {/* Trailer Modal */}
+      {showTrailer && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg w-full max-w-3xl relative">
+            <button
+              onClick={() => setShowTrailer(false)}
+              className="absolute top-2 right-2 text-white text-2xl font-bold hover:text-red-500"
+            >
+              &times;
+            </button>
+            <div className="aspect-video w-full">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                title="Trailer"
+                // frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </MainLayout>
   )
 }

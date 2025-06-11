@@ -25,6 +25,7 @@ interface Schedule {
 interface Pemesanan {
   id: number
   schedule: Schedule
+  status_pemesanan:'berhasil' | 'gagal' | 'masalah' | null
   created_at: string
 }
 
@@ -33,13 +34,38 @@ interface PageProps {
   [key: string]: unknown
 }
 
+const getStatusBadge = (status: Pemesanan["status_pemesanan"]) => {
+  switch (status) {
+    case "berhasil":
+      return {
+        label: "Success",
+        bg: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+      }
+    case "gagal":
+      return {
+        label: "Fail",
+        bg: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+      }
+    case "masalah":
+      return {
+        label: "Trouble",
+        bg: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
+      }
+    default:
+      return {
+        label: "Pending",
+        bg: "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200",
+      }
+  }
+}
+
 const PesananIndex: React.FC = () => {
   const { pemesanan } = usePage<PageProps>().props
 
   return (
     <AppLayout>
-      <main className="w-full min-h-screen bg-gray-50 dark:bg-main">
-        <div className="container mx-auto px-4 py-6 max-w-4xl">
+      <main className="w-full min-h-screen bg-gray-50 dark:bg-main flex justify-center">
+        <div className="container mx-8 my-12 max-w-4xl">
           {/* Header */}
           <div className="mb-6">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">My Tickets</h1>
@@ -59,7 +85,7 @@ const PesananIndex: React.FC = () => {
             ) : (
               pemesanan.map((pesanan) => (
                 <Link key={pesanan.id} href={route("detail_ticket", pesanan.id)} className="block">
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-200">
+                  <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-200">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
                         <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
@@ -83,9 +109,17 @@ const PesananIndex: React.FC = () => {
                       </div>
 
                       <div className="text-right">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                        {/* <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                           Success
-                        </span>
+                        </span> */}
+                        {(() => {
+                          const { label, bg } = getStatusBadge(pesanan.status_pemesanan)
+                          return (
+                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${bg}`}>
+                              {label}
+                            </span>
+                          )
+                        })()}
                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                           Booked: {new Date(pesanan.created_at).toLocaleDateString("id-ID")}
                         </p>

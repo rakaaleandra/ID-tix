@@ -16,10 +16,10 @@ export default function DetailTheater({ theater }: Props) {
   return (
     <AppLayout>
       <Head title={theater.nama_bioskop} />
-      <div className="min-h-screen bg-gray-50 dark:bg-main">
-        <div className="container mx-auto px-4 py-8 max-w-6xl">
+      <div className="min-h-screen bg-gray-50 dark:bg-main flex justify-center">
+        <div className="container mx-8 my-12 max-w-7xl">
           {/* Theater Info Card */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden mb-8">
             <div className="md:flex">
               {/* Theater Info */}
               <div className="p-8 md:w-1/2">
@@ -88,7 +88,7 @@ export default function DetailTheater({ theater }: Props) {
           </div>
 
           {/* About Section */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-8">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">About {theater.nama_bioskop}</h2>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
               {theater.nama_bioskop} is a premier cinema destination located in {theater.lokasi_bioskop}. Featuring
@@ -99,7 +99,7 @@ export default function DetailTheater({ theater }: Props) {
           </div>
 
           {/* Nearby Amenities */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Nearby Amenities</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">

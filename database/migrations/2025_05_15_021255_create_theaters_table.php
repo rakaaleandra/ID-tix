@@ -15,6 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nama_bioskop');
             $table->string('lokasi_bioskop');
+            $table->string('gambar_bioskop');
+            $table->string('spesifik_lokasi_bioskop');
+            $table->string('map_bioskop');
+            $table->string('deskripsi_bioskop');
+            $table->string('no_telp_bioskop');
             $table->timestamps();
         });
     }
