@@ -31,7 +31,18 @@ export default function Detail_Film({ film }: Props) {
       <div className="w-full min-h-screen bg-main flex justify-center">
         <div className="container mx-8 my-12 max-w-7xl">
           <header className="mb-8">
-            <h1 className="text-white text-3xl md:text-4xl font-bold">Now Showing</h1>
+            {/* <h1 className="text-white text-3xl md:text-4xl font-bold">Now Showing</h1> */}
+            {(()=>{
+              if(film.tayang ==true){
+                return(
+                  <h1 className="text-white text-3xl md:text-4xl font-bold">Now Showing</h1>
+                )
+              } else{
+                return(
+                  <h1 className="text-white text-3xl md:text-4xl font-bold">Coming Soon</h1>
+                )
+              }
+            })()}
           </header>
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Poster Section */}
