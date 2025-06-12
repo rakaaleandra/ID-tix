@@ -11,7 +11,7 @@ import { UserMenuContent } from '@/components/user-menu-content';
 import { useInitials } from '@/hooks/use-initials';
 import { type PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
-import { ChevronDown, CalendarDays, MapPin, House } from 'lucide-react';
+import { ChevronDown, CalendarDays, MapPin, House, Instagram } from 'lucide-react';
 
 export default function MainLayout({ children }: PropsWithChildren) {
     const { auth } = usePage<SharedData>().props;
@@ -101,6 +101,28 @@ export default function MainLayout({ children }: PropsWithChildren) {
                 <div className="h-16"></div>
             </header>
             <div>{children}</div>
+            <footer className='dark:bg-gray-950 h-72 w-full flex justify-center items-center'>
+                <div className='w-7xl flex justify-between'>
+                    <div className='flex flex-col'>
+                        <div className='flex gap-4 items-center mb-2'>
+                            <img src={Logo} alt="ID-tix Logo"  className='size-14'/>
+                            <h1 className='text-xl font-bold'>ID-tix</h1>
+                        </div>
+                        <div className='font-semibold text-gray-300'>
+                            descipsi
+                        </div>
+                        {/* <div>
+                            Sosial media
+                        </div> */}
+                    </div>
+                    <div className='flex gap-4'>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluc3RhZ3JhbS1pY29uIGx1Y2lkZS1pbnN0YWdyYW0iPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgeD0iMiIgeT0iMiIgcng9IjUiIHJ5PSI1Ii8+PHBhdGggZD0iTTE2IDExLjM3QTQgNCAwIDEgMSAxMi42MyA4IDQgNCAwIDAgMSAxNiAxMS4zN3oiLz48bGluZSB4MT0iMTcuNSIgeDI9IjE3LjUxIiB5MT0iNi41IiB5Mj0iNi41Ii8+PC9zdmc+" alt="" className='size-9 text-white' />
+                        {/* <img src={Instagram} alt="" className='size-11' />
+                        <img src={Twitter} alt="" className='size-11' />
+                        <img src={Youtube} alt="" className='size-11' /> */}
+                    </div>
+                </div>
+            </footer>
         </main>
     )
 }
