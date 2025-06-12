@@ -23,7 +23,7 @@ return new class extends Migration
             );
             $table->string('bukti_bayar');
             $table->enum('status_pemesanan', ['berhasil', 'gagal', 'masalah', 'null'])->default('null');
-            $table->string('feedback');
+            $table->string('feedback')->nullable();
             $table->integer('total_bayar');
             $table->timestamps();
         });

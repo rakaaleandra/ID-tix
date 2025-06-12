@@ -7,6 +7,7 @@ interface Theater {
   id: number
   nama_bioskop: string
   lokasi_bioskop: string
+  gambar_bioskop: string
 }
 
 interface Props {
@@ -32,11 +33,11 @@ export default function Theater({ theaters }: Props) {
                 <Link
                   href={route("theater.show", theater.id)}
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-[1.02]">
+                  <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-[1.02]">
                     {/* Theater Image */}
                     <div className="overflow-hidden">
                       <img
-                        src={Cinema}
+                        src={`/storage/TheaterImage/${theater.gambar_bioskop}`}
                         alt={theater.nama_bioskop}
                       />
                     </div>

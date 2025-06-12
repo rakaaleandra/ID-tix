@@ -147,7 +147,8 @@ export default function Detail_Film({ film }: Props) {
             <div className="aspect-video w-full">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                // src="https://www.youtube.com/embed/-E3lMRx7HRQ?si=xB1bz_C3BLftdTMc"
+                src={film.trailer_film}
                 title="Trailer"
                 // frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

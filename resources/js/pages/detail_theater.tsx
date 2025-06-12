@@ -6,6 +6,10 @@ interface Theater {
   id: number
   nama_bioskop: string
   lokasi_bioskop: string
+  spesifik_lokasi_bioskop: string
+  map_bioskop: string
+  deskripsi_bioskop : string
+  no_telp_bioskop: string
 }
 
 interface Props {
@@ -28,12 +32,12 @@ export default function DetailTheater({ theater }: Props) {
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-orange-500 mt-0.5" />
-                    <span className="text-gray-600 dark:text-gray-300">{theater.lokasi_bioskop}</span>
+                    <span className="text-gray-600 dark:text-gray-300">{theater.spesifik_lokasi_bioskop}</span>
                   </div>
 
                   <div className="flex items-start space-x-3">
                     <Phone className="h-5 w-5 text-orange-500 mt-0.5" />
-                    <span className="text-gray-600 dark:text-gray-300">(021) 555-1234</span>
+                    <span className="text-gray-600 dark:text-gray-300">{theater.no_telp_bioskop}</span>
                   </div>
 
                   <div className="flex items-start space-x-3">
@@ -76,7 +80,7 @@ export default function DetailTheater({ theater }: Props) {
               {/* Map */}
               <div className="md:w-1/2 h-[300px] md:h-auto">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.0816717362427!2d110.80503977539352!3d-7.566074692447963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a142a7ef544f5%3A0xefcd715ef9a6b868!2sGRAND%20XXI!5e0!3m2!1sms!2sid!4v1749357887175!5m2!1sms!2sid"
+                  src={theater.map_bioskop}
                   className="w-full h-full border border-gray-300 rounded-xl"
                   allowFullScreen
                   loading="lazy"
@@ -91,10 +95,11 @@ export default function DetailTheater({ theater }: Props) {
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">About {theater.nama_bioskop}</h2>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              {theater.nama_bioskop} is a premier cinema destination located in {theater.lokasi_bioskop}. Featuring
+              {/* {theater.nama_bioskop} is a premier cinema destination located in {theater.lokasi_bioskop}. Featuring
               state-of-the-art projection and sound systems, comfortable seating, and a wide selection of concessions,
               we provide an unparalleled movie-going experience. Our theater is equipped with the latest technology
-              including Dolby Atmos sound systems and IMAX screens for the ultimate cinematic experience.
+              including Dolby Atmos sound systems and IMAX screens for the ultimate cinematic experience. */}
+              {theater.deskripsi_bioskop}
             </p>
           </div>
 

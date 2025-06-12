@@ -85,7 +85,7 @@ const PesananIndex: React.FC = () => {
             ) : (
               pemesanan.map((pesanan) => (
                 <Link key={pesanan.id} href={route("detail_ticket", pesanan.id)} className="block">
-                  <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-200">
+                  <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-6 duration-200 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:scale-[1.02]">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
                         <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">

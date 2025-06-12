@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('lokasi_bioskop');
             $table->string('gambar_bioskop');
             $table->string('spesifik_lokasi_bioskop');
-            $table->string('map_bioskop');
-            $table->string('deskripsi_bioskop');
+            $table->text('map_bioskop');
+            $table->text('deskripsi_bioskop');
             $table->string('no_telp_bioskop');
             $table->timestamps();
         });
