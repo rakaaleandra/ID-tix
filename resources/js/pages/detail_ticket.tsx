@@ -24,6 +24,7 @@ interface Pemesanan {
     id: number;
     schedule: Schedule;
     status_pemesanan:'berhasil' | 'gagal' | 'masalah' | null
+    feedback: string;
     total_bayar: number;
     created_at: string;
 }
@@ -125,6 +126,23 @@ export default function Detail_Ticket({ pemesanan, tickets }: Props) {
                         })()}
                       </td>
                     </tr>
+                      {(() => {
+                        if (pemesanan.status_pemesanan === 'gagal' || pemesanan.status_pemesanan === 'masalah') {
+                          return (
+                          <tr className="border-b border-gray-700 last:border-b-0">
+                            <td className="py-2 text-gray-300 font-medium">Fail or Problem feedback</td>
+                            <td className="py-2 text-right text-white">
+                              <span className={`inline-flex items-center px-3 py-1 rounded-full max-w-96`}>
+                                {pemesanan.feedback || 'No feedback provided'}
+                              </span>
+                            </td>
+                          </tr>
+                          )
+                        }
+                        else {
+                          return null
+                        }
+                      })()}
                   </tbody>
                 </table>
               </div>

@@ -39,6 +39,7 @@ export default function Theater({ theaters }: Props) {
                       <img
                         src={`/storage/TheaterImage/${theater.gambar_bioskop}`}
                         alt={theater.nama_bioskop}
+                        className='h-60 w-full object-cover group-hover:scale-105 transition-transform duration-300'
                       />
                     </div>
 

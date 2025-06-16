@@ -47,7 +47,7 @@ export default function Detail_Film({ film }: Props) {
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Poster Section */}
             <div className="w-full lg:w-2/5">
-              <div className="aspect-[3/4] overflow-hidden rounded-lg shadow-lg">
+              <div className="overflow-hidden rounded-lg shadow-lg">
                 <img
                   src={`/storage/FilmPoster/${film.poster_film}`}
                   alt={film.nama_film}
@@ -56,7 +56,7 @@ export default function Detail_Film({ film }: Props) {
               </div>
             </div>
             {/* Content Section */}
-            <div className="w-full lg:w-3/5 flex flex-col gap-6 text-white dark:bg-gray-900 rounded-lg p-8">
+            <div className="w-full h-fit lg:w-3/5 flex flex-col gap-6 text-white dark:bg-gray-900 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold dark:text-white">{film.nama_film}</h2>
               {/* <div className="text-lg dark:text-gray-400 w-fit text-left flex items-center gap-3 hover:text-white" onClick={() => setShowTrailer(true)}>
                 <Youtube className="hover:text-white"/>

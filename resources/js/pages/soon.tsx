@@ -46,10 +46,11 @@ export default function Index({ films }: Props) {
                     href={route("detail_films.show", film.slug)}
                     className="block bg-white dark:bg-gray-900 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-105"
                   >
-                    <div className="aspect-[3/4] overflow-hidden">
+                    <div className="overflow-hidden">
                       <img
                         src={`/storage/FilmPoster/${film.poster_film}`}
                         alt={film.nama_film}
+                        className='h-[440px] w-full object-cover group-hover:scale-105 transition-transform duration-300'
                       />
                     </div>
                     <div className="p-4">

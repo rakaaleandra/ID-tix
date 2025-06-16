@@ -6,6 +6,7 @@ import { MapPin, Calendar, Clock, Users } from "lucide-react"
 interface Film {
   id: number
   nama_film: string
+  poster_film: string
 }
 
 interface Theater {
@@ -86,50 +87,58 @@ const PesananIndex: React.FC = () => {
               pemesanan.map((pesanan) => (
                 <Link key={pesanan.id} href={route("detail_ticket", pesanan.id)} className="block">
                   <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-6 duration-200 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:scale-[1.02]">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                          {pesanan.schedule.film.nama_film}
-                        </h3>
-
-                        <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
-                          <MapPin className="w-4 h-4 mr-2" />
-                          <span className="text-sm">{pesanan.schedule.theater.nama_bioskop}</span>
-                        </div>
-
-                        <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
-                          <Calendar className="w-4 h-4 mr-2" />
-                          <span className="text-sm">{pesanan.schedule.tanggal_tayang}</span>
-                        </div>
-
-                        <div className="flex items-center text-gray-600 dark:text-gray-400">
-                          <Clock className="w-4 h-4 mr-2" />
-                          <span className="text-sm">{pesanan.schedule.jam_tayang}</span>
-                        </div>
+                    <div className="flex w-full">
+                      <div className="flex-shrink-0 bg-gray-200 dark:bg-gray-800 rounded-lg mr-4">
+                        <img
+                        src={`/storage/FilmPoster/${pesanan.schedule.film.poster_film}`}
+                        alt={pesanan.schedule.film.nama_film}
+                        className="h-44"
+                      />
                       </div>
+                      <div className="flex flex-col w-full">
+                        <div className="flex justify-between items-start mb-4">
+                          <div className="flex-1">
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                              {pesanan.schedule.film.nama_film}
+                            </h3>
 
-                      <div className="text-right">
-                        {/* <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                          Success
-                        </span> */}
-                        {(() => {
-                          const { label, bg } = getStatusBadge(pesanan.status_pemesanan)
-                          return (
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${bg}`}>
-                              {label}
-                            </span>
-                          )
-                        })()}
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                          Booked: {new Date(pesanan.created_at).toLocaleDateString("id-ID")}
-                        </p>
-                      </div>
-                    </div>
+                            <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
+                              <MapPin className="w-4 h-4 mr-2" />
+                              <span className="text-sm">{pesanan.schedule.theater.nama_bioskop}</span>
+                            </div>
 
-                    <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Ticket ID: #{pesanan.id}</span>
-                        <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">View Details →</span>
+                            <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
+                              <Calendar className="w-4 h-4 mr-2" />
+                              <span className="text-sm">{pesanan.schedule.tanggal_tayang}</span>
+                            </div>
+
+                            <div className="flex items-center text-gray-600 dark:text-gray-400">
+                              <Clock className="w-4 h-4 mr-2" />
+                              <span className="text-sm">{pesanan.schedule.jam_tayang}</span>
+                            </div>
+                          </div>
+
+                          <div className="text-right">
+                            {(() => {
+                              const { label, bg } = getStatusBadge(pesanan.status_pemesanan)
+                              return (
+                                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${bg}`}>
+                                  {label}
+                                </span>
+                              )
+                            })()}
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                              Booked: {new Date(pesanan.created_at).toLocaleDateString("id-ID")}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Ticket ID: #{pesanan.id}</span>
+                            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">View Details →</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
