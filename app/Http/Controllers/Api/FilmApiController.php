@@ -74,51 +74,102 @@ class FilmApiController extends Controller
         }
     }
 
-    public function input_pemesanan(){
-
-    }
-
-    public function pemesanan_check(){
-
-    }
-
-    public function index()
-    {
-        $pesanans = Pemesanan::with(['schedule.film', 'schedule.theater'])->get();
-        // return response()->json(Film::all());
-        return response()->json(
-            $pesanans
-        );
-    }
-
-    public function show(Film $film)
-    {
-        return response()->json($film);
-    }
-
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nama_film' => 'required|string',
-            // tambahkan validasi lain sesuai kebutuhan
+    public function input_pemesanan(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+            'filmId' => 'required|integer',
+            'namaFilm' => 'required|string',
+            'filmPoster' => 'required|integer',
+            'namaBioskop' => 'required|string',
+            'jadwalTayang' => 'required|string',
+            'kursi' => 'required|string',
+            'jumlahKursi' => 'required|integer',
+            'tanggalPemesanan' => 'required|date',
+            'statusPemesanan' => 'required|in:berhasil,gagal,masalah,null',
+            'feedback' => 'nullable|string',
+            'totalBayar' => 'required|integer',
         ]);
-        $film = Film::create($validated);
-        return response()->json($film, 201);
+
+        // Kurangi saldo user
+        // $user = Appuser::where('email', $validatedData['email'])->first();
+        $user = Appuser::where('email', $request->email)->first();
+
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User tidak ditemukan'
+            ], 404);
+        }
+
+        if ($user->saldo < $request['totalBayar']) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Saldo tidak mencukupi'
+            ], 400);
+        }
+
+        // Simpan pemesanan
+        $pemesanan = Apppemesanan::create($request->all());
+
+        // Update saldo user
+        $user->saldo -= $request->totalBayar;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Pemesanan berhasil disimpan dan saldo dikurangi',
+            'data' => $pemesanan
+        ], 201);
     }
 
-    public function update(Request $request, Film $film)
-    {
-        $validated = $request->validate([
-            'nama_film' => 'sometimes|string',
-            // tambahkan validasi lain sesuai kebutuhan
+    public function pemesanan_check(Request $request){
+        $request->validate([
+            'email' => 'required|email',
         ]);
-        $film->update($validated);
-        return response()->json($film);
-    }
 
-    public function destroy(Film $film)
-    {
-        $film->delete();
-        return response()->json(null, 204);
+        $data = Apppemesanan::where('email', $request->email)->get();
+
+        return response()->json($data);
     }
 }
+
+
+// public function index()
+// {
+//     $pesanans = Pemesanan::with(['schedule.film', 'schedule.theater'])->get();
+//     // return response()->json(Film::all());
+//     return response()->json(
+//         $pesanans
+//     );
+// }
+
+// public function show(Film $film)
+// {
+//     return response()->json($film);
+// }
+
+// public function store(Request $request)
+// {
+//     $validated = $request->validate([
+//         'nama_film' => 'required|string',
+//         // tambahkan validasi lain sesuai kebutuhan
+//     ]);
+//     $film = Film::create($validated);
+//     return response()->json($film, 201);
+// }
+
+// public function update(Request $request, Film $film)
+// {
+//     $validated = $request->validate([
+//         'nama_film' => 'sometimes|string',
+//         // tambahkan validasi lain sesuai kebutuhan
+//     ]);
+//     $film->update($validated);
+//     return response()->json($film);
+// }
+
+// public function destroy(Film $film)
+// {
+//     $film->delete();
+//     return response()->json(null, 204);
+// }

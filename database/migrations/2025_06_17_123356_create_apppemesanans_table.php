@@ -14,15 +14,17 @@ return new class extends Migration
         Schema::create('apppemesanans', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->string('nama_film');
-            $table->string('nama_bioskop');
-            $table->string('jadwal_tayang');
+            $table->integer('filmId');
+            $table->string('namaFilm');
+            $table->integer('filmPoster');
+            $table->string('namaBioskop');
+            $table->string('jadwalTayang');
             $table->string('kursi');
-            $table->integer('jumlah_kursi');
-            $table->string('tanggal_pemesanan');
-            $table->enum('status_pemesanan', ['berhasil', 'gagal', 'masalah', 'null'])->default('null');
+            $table->integer('jumlahKursi');
+            $table->string('tanggalPemesanan');
+            $table->enum('statusPemesanan', ['berhasil', 'gagal', 'masalah', 'null'])->default('null');
             $table->string('feedback')->nullable();
-            $table->integer('total_bayar');
+            $table->integer('totalBayar');
             $table->timestamps();
         });
     }

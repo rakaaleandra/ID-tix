@@ -9,14 +9,16 @@ class Apppemesanan extends Model
     //
     protected $fillable = [
         'email',
-        'nama_film',
-        'nama_bioskop',
-        'jadwal_tayang',
+        'filmId',
+        'namaFilm',
+        'filmPoster',
+        'namaBioskop',
+        'jadwalTayang',
         'kursi',
-        'jumlah_kursi',
-        'tanggal_pemesanan',
-        'status_pemesanan',
+        'jumlahKursi',
+        'tanggalPemesanan',
+        'statusPemesanan',
         'feedback',
-        'total_bayar'
+        'totalBayar'
     ];
 }
