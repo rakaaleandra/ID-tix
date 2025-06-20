@@ -24,7 +24,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
                 <link rel='icon' href={Logo} />
             </Head>
             <header>
-                <div className="fixed h-16 w-full bg-blue-200 dark:bg-main flex items-center justify-center p-8 border-b border-main2 z-50">
+                <div className="fixed h-16 w-full bg-main flex items-center justify-center p-8 border-b border-main2 z-50">
                     <div className="flex w-full max-w-7xl items-center justify-between">
                         <div className='h-full flex items-center justify-center'>
                             <Link href={route('home')}>
@@ -101,7 +101,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
                 <div className="h-16"></div>
             </header>
             <div>{children}</div>
-            <footer className='dark:bg-gray-950 h-60 w-full flex justify-center items-center'>
+            <footer className={cn('dark:bg-gray-950 h-60 w-full flex justify-center items-center' , {' hidden': currentPath === '/settings/profile',})}>
                 <div className='w-7xl flex justify-between'>
                     <div className='flex flex-col'>
                         <div className='flex gap-4 items-center mb-4'>
