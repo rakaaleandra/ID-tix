@@ -28,9 +28,10 @@ export default function Detail_Film({ film }: Props) {
   return (
     <MainLayout>
       <Head title={film.nama_film} />
-      <div className="w-full min-h-screen bg-main flex justify-center">
-        <div className="container mx-8 my-12 max-w-7xl">
-          <header className="mb-8">
+      <div className="w-full min-h-screen bg-white dark:bg-main flex justify-center">
+      <div className="container mx-8 my-12 max-w-7xl">
+        <header className="mb-8">
+          <h1 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold"></h1>
             {/* <h1 className="text-white text-3xl md:text-4xl font-bold">Now Showing</h1> */}
             {(()=>{
               if(film.tayang ==true){
@@ -45,6 +46,7 @@ export default function Detail_Film({ film }: Props) {
             })()}
           </header>
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+
             {/* Poster Section */}
             <div className="w-full lg:w-2/5">
               <div className="overflow-hidden rounded-lg shadow-lg">
@@ -55,43 +57,45 @@ export default function Detail_Film({ film }: Props) {
                 />
               </div>
             </div>
+
             {/* Content Section */}
-            <div className="w-full h-fit lg:w-3/5 flex flex-col gap-6 text-white dark:bg-gray-900 rounded-lg p-8">
-              <h2 className="text-2xl md:text-3xl font-bold dark:text-white">{film.nama_film}</h2>
+            <div className="w-full h-fit lg:w-3/5 flex flex-col gap-6 light:bg-white text-white dark:bg-gray-900 rounded-lg p-8 shadow">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{film.nama_film}</h2>
               {/* <div className="text-lg dark:text-gray-400 w-fit text-left flex items-center gap-3 hover:text-white" onClick={() => setShowTrailer(true)}>
                 <Youtube className="hover:text-white"/>
                 <h3 className="hover:text-white">
                   Lihat Trailer
                 </h3>
               </div> */}
+
               {/* Film Details Table */}
-              <div className="bg-gray-800/50 rounded-lg p-6">
+              <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6">
                 <table className="w-full text-sm md:text-base">
-                  <tbody className="space-y-3">
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Jenis Film</td>
+                  <tbody className="space-y-3 text-gray-900 dark:text-white">
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Jenis Film</td>
                       {/* <td className="py-2 text-center text-gray-500">:</td> */}
-                      <td className="py-2 text-right text-white">{film.genre_film}</td>
+                      <td className="py-2 text-right">{film.genre_film}</td>
                     </tr>
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Produser</td>
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Produser</td>
                       {/* <td className="py-2 text-center text-gray-500">:</td> */}
-                      <td className="py-2 text-right text-white">{film.produser}</td>
+                      <td className="py-2 text-right">{film.produser}</td>
                     </tr>
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Sutradara</td>
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Sutradara</td>
                       {/* <td className="py-2 text-center text-gray-500">:</td> */}
-                      <td className="py-2 text-right text-white">{film.sutradara_film}</td>
+                      <td className="py-2 text-right">{film.sutradara_film}</td>
                     </tr>
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Produksi</td>
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Produksi</td>
                       {/* <td className="py-2 text-center text-gray-500">:</td> */}
-                      <td className="py-2 text-right text-white">{film.produksi}</td>
+                      <td className="py-2 text-right">{film.produksi}</td>
                     </tr>
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Casts</td>
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Casts</td>
                       {/* <td className="py-2 text-center text-gray-500">:</td> */}
-                      <td className="py-2 text-right text-white">{film.casts}</td>
+                      <td className="py-2 text-right">{film.casts}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -99,9 +103,9 @@ export default function Detail_Film({ film }: Props) {
 
               {/* Synopsis Section */}
               <div className="space-y-4">
-                <h3 className="text-xl md:text-2xl font-bold text-white">Sinopsis</h3>
-                <div className="bg-gray-800/50 rounded-lg p-4">
-                  <p className="text-gray-300 leading-relaxed text-sm md:text-base">{film.sinopsis}</p>
+                <h3 className="ttext-xl md:text-2xl font-bold text-gray-900 dark:text-white">Sinopsis</h3>
+                <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4">
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base">{film.sinopsis}</p>
                 </div>
               </div>
 
