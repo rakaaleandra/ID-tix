@@ -62,7 +62,7 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
           <div className="md:w-2/3">
             <h2 className="text-xl font-bold mb-4">Pilih Kursi</h2>
             <div className="grid grid-cols-15 gap-3">
-              <div className="col-span-full flex justify-center items-center text-xl font-bold h-10 bg-main">
+              <div className="col-span-full flex justify-center items-center text-xl font-bold h-10 bg-gray-300 dark:bg-main text-gray-900 dark:text-white">
                 Layar
               </div>
               {seats.map((seat) => {
@@ -78,7 +78,7 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
                         ? "bg-gray-300 text-gray-700 dark:bg-gray-700 dark:text-gray-400 border-0 cursor-not-allowed"
                         : isSelected
                         ? "bg-orange-400 border-0"
-                        : "text-white hover:bg-orange-600 hover:border-0"
+                        : "bg-orange-500 text-white hover:bg-orange-600 hover:border-0"
                     }`}
                   >
                     {seat.nomor_kursi}
@@ -105,7 +105,7 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
                 <label className="block font-medium mb-1">Upload Bukti Bayar</label>
                 <input
                   type="file"
-                  className="block w-full border rounded px-3 py-2 dark:bg-gray-800 dark:border-gray-600"
+                  className="block w-full border rounded px-3 py-2 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600"
                   onChange={(e) => {
                     if (e.target.files?.[0]) {
                       setData("bukti_bayar", e.target.files[0]);
@@ -122,7 +122,7 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
               </button>
 
               {progress && (
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
+                <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
                   <div
                     className="bg-green-500 h-4 transition-all"
                     style={{ width: `${progress.percentage}%` }}

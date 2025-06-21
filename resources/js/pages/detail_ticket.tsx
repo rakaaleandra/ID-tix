@@ -66,15 +66,15 @@ const getStatusBadge = (status: Pemesanan["status_pemesanan"]) => {
 export default function Detail_Ticket({ pemesanan, tickets }: Props) {
   return (
     <AppLayout>
-      <div className="w-full min-h-screen flex justify-center dark:bg-main">
+      <div className="w-full min-h-screen flex justify-center bg-gray-100 dark:bg-main">
         <div className="flex flex-col gap-8 mx-8 my-12 container max-w-3xl">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Ticket</h1>
-          <div className="bg-gray-900 rounded-lg p-12">
-            <div className="w-full flex justify-center border-b border-gray-600 pb-8">
+          <div className="bg-white dark:bg-gray-900 rounded-lg p-12 shadow-lg">
+            <div className="w-full flex justify-center border-b border-gray-300 dark:border-gray-600 pb-8">
               <img src={QR} alt="QR Code" className="size-72" />
             </div>
             <div className="mt-6">
-              <h1 className="text-white text-3xl font-semibold mb-6">{pemesanan.schedule.film.nama_film}</h1>
+              <h1 className="text-3xl font-semibold mb-6 text-gray-900 dark:text-white">{pemesanan.schedule.film.nama_film}</h1>
               <div className="w-full h-full flex flex-col gap-5">
                 {/* <div className="w-full flex justify-between">
                   <h1 className="text-gray-400">Total Bayar</h1>
@@ -92,30 +92,33 @@ export default function Detail_Ticket({ pemesanan, tickets }: Props) {
                     {tickets.map((ticket: Ticket) => ticket.nomor_kursi).join(", ")}
                   </h1>
                 </div> */}
-                <div className="bg-gray-800/50 rounded-lg p-6">
+                <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6">
                 <table className="w-full text-sm md:text-base">
                   <tbody className="space-y-3">
                     <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Bioskop</td>
-                      <td className="py-2 text-right text-white">{pemesanan.schedule.theater.nama_bioskop}</td>
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Bioskop</td>
+                      <td className="py-2 text-right">{pemesanan.schedule.theater.nama_bioskop}</td>
                     </tr>
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Tanggal Tayang</td>
-                      <td className="py-2 text-right text-white">{pemesanan.schedule.tanggal_tayang} / {pemesanan.schedule.jam_tayang}</td>
+
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Tanggal Tayang</td>
+                      <td className="py-2 text-right text-gray-900 dark:text-white">{pemesanan.schedule.tanggal_tayang} / {pemesanan.schedule.jam_tayang}</td>
                     </tr>
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Kursi</td>
-                      <td className="py-2 text-right text-white">
+
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Kursi</td>
+                      <td className="py-2 text-right text-gray-900 dark:text-white">
                         {tickets.map((ticket: Ticket) => ticket.nomor_kursi).join(", ")}
                       </td>
                     </tr>
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Total Bayar</td>
-                      <td className="py-2 text-right text-white">{pemesanan.total_bayar}</td>
+
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Total Bayar</td>
+                      <td className="py-2 text-right text-gray-900 dark:text-white">{pemesanan.total_bayar}</td>
                     </tr>
-                    <tr className="border-b border-gray-700 last:border-b-0">
-                      <td className="py-2 text-gray-300 font-medium">Status</td>
-                      <td className="py-2 text-right text-white">
+                    <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Status</td>
+                      <td className="py-2 text-right text-gray-900 dark:text-white">
                         {(() => {
                           const { label, bg } = getStatusBadge(pemesanan.status_pemesanan)
                           return (
@@ -129,10 +132,10 @@ export default function Detail_Ticket({ pemesanan, tickets }: Props) {
                       {(() => {
                         if (pemesanan.status_pemesanan === 'gagal' || pemesanan.status_pemesanan === 'masalah') {
                           return (
-                          <tr className="border-b border-gray-700 last:border-b-0">
-                            <td className="py-2 text-gray-300 font-medium">Fail or Problem feedback</td>
-                            <td className="py-2 text-right text-white">
-                              <span className={`inline-flex items-center px-3 py-1 rounded-full max-w-96`}>
+                          <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
+                            <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Fail or Problem feedback</td>
+                            <td className="py-2 text-right text-gray-900 dark:text-white">
+                              <span className={"inline-flex items-center px-3 py-1 rounded-lg bg-gray-200 dark:bg-gray-700 max-w-96 text-sm text-gray-800 dark:text-gray-100"}>
                                 {pemesanan.feedback || 'No feedback provided'}
                               </span>
                             </td>

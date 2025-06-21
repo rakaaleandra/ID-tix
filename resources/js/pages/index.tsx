@@ -5,6 +5,7 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import Dashboard from './dashboard';
 import { useRoute } from 'vendor/tightenco/ziggy';
 
+
 interface Film {
   id: number | string
   nama_film: string
@@ -30,19 +31,34 @@ export default function Index({ films }: Props) {
       <Head title="Home" />
 
       {/* Hero Section */}
-      <div className="relative w-full h-96 bg-gradient-to-r from-black/50 to-black/30">
+      <div className="relative w-full h-[32rem] overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <div
-          className="absolute inset-0 bg-[url('@/assets/film1.jpg')] bg-center bg-cover"
-          style={{ backgroundImage: "url('@/assets/film1.jpg')" }}
+          className="absolute inset-0 opacity-15 dark:opacity-25"
+          style={{
+            backgroundImage: `
+              polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)
+            `,
+            maskImage: `
+              radial-gradient(circle at 20% 20%, #f97316 2px, transparent 2px),
+              radial-gradient(circle at 80% 40%, #f97316 1.5px, transparent 1.5px),
+              radial-gradient(circle at 40% 80%, #f97316 2px, transparent 2px)
+            `,
+            maskSize: "80px 80px, 60px 60px, 70px 70px",
+            backgroundColor: "#f97316",
+          }}
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative h-full flex items-center justify-end pr-8">
-          <div className="bg-black/60 backdrop-blur-sm rounded-lg p-8 text-center">
-            <h2 className="text-white text-2xl font-bold">Welcome to Cinema Dongo</h2>
-            <p className="text-gray-200 mt-2">Experience the magic of movies</p>
-          </div>
+      </div>
+
+      <div className="relative z-10 h-full flex items-center justify-center px-8">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-4 drop-shadow-lg">
+            Welcome to <span className="text-orange-500">Cinema Dongo</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-xl mx-auto">Experience the magic of movies</p>
         </div>
       </div>
+    </div>
 
       {/* Main Content */}
       <main className="w-full bg-white dark:bg-main flex justify-center">
