@@ -27,6 +27,7 @@ interface Pemesanan {
     feedback: string;
     total_bayar: number;
     created_at: string;
+    code_pemesanan: string;
 }
 
 interface Ticket {
@@ -36,6 +37,7 @@ interface Ticket {
 interface Props {
   pemesanan: Pemesanan;
   tickets: Ticket[];
+  qr?: string;
 }
 
 const getStatusBadge = (status: Pemesanan["status_pemesanan"]) => {
@@ -63,7 +65,7 @@ const getStatusBadge = (status: Pemesanan["status_pemesanan"]) => {
   }
 }
 
-export default function Detail_Ticket({ pemesanan, tickets }: Props) {
+export default function Detail_Ticket({ pemesanan, tickets, qr }: Props) {
   return (
     <AppLayout>
       <div className="w-full min-h-screen flex justify-center dark:bg-main">
@@ -71,7 +73,9 @@ export default function Detail_Ticket({ pemesanan, tickets }: Props) {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Ticket</h1>
           <div className="bg-gray-900 rounded-lg p-12">
             <div className="w-full flex justify-center border-b border-gray-600 pb-8">
-              <img src={QR} alt="QR Code" className="size-72" />
+              <div className="p-4 bg-white rounded-lg shadow-lg">
+                <img src={qr} alt="QR Code" className="size-64" />
+              </div>
             </div>
             <div className="mt-6">
               <h1 className="text-white text-3xl font-semibold mb-6">{pemesanan.schedule.film.nama_film}</h1>
@@ -95,6 +99,10 @@ export default function Detail_Ticket({ pemesanan, tickets }: Props) {
                 <div className="bg-gray-800/50 rounded-lg p-6">
                 <table className="w-full text-sm md:text-base">
                   <tbody className="space-y-3">
+                    <tr className="border-b border-gray-700 last:border-b-0">
+                      <td className="py-2 text-gray-300 font-medium">Code</td>
+                      <td className="py-2 text-right text-white">{pemesanan.code_pemesanan}</td>
+                    </tr>
                     <tr className="border-b border-gray-700 last:border-b-0">
                       <td className="py-2 text-gray-300 font-medium">Bioskop</td>
                       <td className="py-2 text-right text-white">{pemesanan.schedule.theater.nama_bioskop}</td>

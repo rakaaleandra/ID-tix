@@ -21,6 +21,7 @@ return new class extends Migration
                 table: 'schedules',
                 indexName: 'pemesanans_schedule_id_foreign'
             );
+            $table->string('code_pemesanan')->unique();
             $table->string('bukti_bayar');
             $table->enum('status_pemesanan', ['berhasil', 'gagal', 'masalah', 'null'])->default('null');
             $table->string('feedback')->nullable();

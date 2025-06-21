@@ -9,6 +9,8 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class FilmController extends Controller
 {
@@ -51,6 +53,10 @@ class FilmController extends Controller
             'total_bayar' => 'required'
         ]);
 
+        do {
+            $code = Str::random(25);
+        } while (Pemesanan::where('code_pemesanan', $code)->exists());
+
         $user = Auth::user();
         if($request->hasFile('bukti_bayar')){
             $file = $request->file('bukti_bayar');
@@ -60,6 +66,8 @@ class FilmController extends Controller
             $pemesanan = Pemesanan::create([
                 'user_id' => $user->id,
                 'schedule_id' => $request->schedule_id,
+                // 'code_pemesanan' => 'PM-' . strtoupper(uniqid()),
+                'code_pemesanan' => $code,
                 'bukti_bayar' => $bukti_bayar_path ?? null,
                 'total_bayar' => $request->total_bayar
             ]);
@@ -141,16 +149,20 @@ class FilmController extends Controller
     }
 
 
+    // return Inertia::render('detail_ticket', [
+    //     'pemesanan' => $pemesanan->with(['schedule.film', 'schedule.theater']),
+    //     'tickets' => Ticket::where('pemesanan_id', $pemesanan->id)->get()
+    // ]);
     public function show5(Pemesanan $pemesanan){
-        // return Inertia::render('detail_ticket', [
-        //     'pemesanan' => $pemesanan->with(['schedule.film', 'schedule.theater']),
-        //     'tickets' => Ticket::where('pemesanan_id', $pemesanan->id)->get()
-        // ]);
         $pemesanan->load(['schedule.film', 'schedule.theater']);
+
+        $qrCode = QrCode::format('svg')->size(200)->generate($pemesanan->code_pemesanan);
+        $qrCodeImage = 'data:image/svg+xml;base64,' . base64_encode($qrCode);
 
         return Inertia::render('detail_ticket', [
             'pemesanan' => $pemesanan,
-            'tickets' => Ticket::where('pemesanan_id', $pemesanan->id)->get()
+            'tickets' => Ticket::where('pemesanan_id', $pemesanan->id)->get(),
+            'qr' => $qrCodeImage
         ]);
     }
     /**
