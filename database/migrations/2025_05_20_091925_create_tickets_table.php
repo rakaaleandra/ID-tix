@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignId('schedule_id')->constrained(
                 table: 'schedules',
                 indexName: 'tickets_schedule_id_foreign'
-            );
+            )->onDelete('cascade');
             $table->foreignId('pemesanan_id')->nullable()->constrained(
                 table: 'pemesanans',
                 indexName: 'tickets_pemesanan_id_foreign'
-            );
+            )->onDelete('set null');
             $table->boolean('status_booking')->default(false);
             $table->string('nomor_kursi');
             $table->timestamps();

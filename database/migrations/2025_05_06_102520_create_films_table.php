@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('produksi');
             $table->string('casts');
             $table->text('sinopsis');
-            $table->boolean('tayang')->default(true);
+            $table->boolean('tayang')->default(false);
+            $table->boolean('tampil_web')->default(true);
             $table->timestamps();
         });
     }

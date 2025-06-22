@@ -22,7 +22,8 @@ Route::get('theater/{theater}', [TheaterController::class, 'show'])->name('theat
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('dashboard');
+        // return Inertia::render('dashboard');
+        return redirect()->route('home');
     })->name('dashboard');
 });
 Route::post('storing', [FilmController::class, 'store'])->name('membayar');

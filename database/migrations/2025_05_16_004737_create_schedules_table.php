@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignId('film_id')->constrained(
                 table: 'films',
                 indexName: 'schedules_film_id_foreign'
-            );
+            )->onDelete('cascade');
             $table->foreignId('theater_id')->constrained(
                 table: 'theaters',
                 indexName: 'schedules_theater_id_foreign'
-            );
+            )->onDelete('cascade');
             $table->date('tanggal_tayang');
             $table->time('jam_tayang');
             $table->integer('harga_tiket');

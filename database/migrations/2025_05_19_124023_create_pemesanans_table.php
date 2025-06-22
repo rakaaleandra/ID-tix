@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained(
                 table: 'users',
                 indexName: 'pemesanans_user_id_foreign'
-            );
+            )->onDelete('cascade');
             $table->foreignId('schedule_id')->constrained(
                 table: 'schedules',
                 indexName: 'pemesanans_schedule_id_foreign'
-            );
+            )->onDelete('cascade');
             $table->string('code_pemesanan')->unique();
             $table->string('bukti_bayar');
             $table->enum('status_pemesanan', ['berhasil', 'gagal', 'masalah', 'null'])->default('null');

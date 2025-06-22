@@ -53,7 +53,7 @@ export default function Index({ films }: Props) {
       <div className="relative z-10 h-full flex items-center justify-center px-8">
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-4 drop-shadow-lg">
-            Welcome to <span className="text-orange-500">Cinema Dongo</span>
+            Welcome to <span className="text-orange-500">ID-tix</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-xl mx-auto">Experience the magic of movies</p>
         </div>

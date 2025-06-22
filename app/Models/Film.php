@@ -20,6 +20,10 @@ class Film extends Model
         'casts',
         'sinopsis',
         'tayang',
+        'tampil_web',
+        'slug',
+        'poster_film',
+        'trailer_film'
     ];
     public function schedules(): HasMany{
         return $this->hasMany(Schedule::class, 'film_id');
