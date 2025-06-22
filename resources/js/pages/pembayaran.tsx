@@ -55,7 +55,7 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
   return (
     <AppLayout>
       <Head title={`${film.nama_film} ${schedule.tanggal_tayang}`} />
-      <main className="w-full flex justify-center p-8 bg-gray-100 dark:bg-main min-h-screen transition-colors">
+      <main className="w-full flex justify-center px-8 py-16 bg-gray-100 dark:bg-main min-h-screen transition-colors">
         <div className="w-full max-w-7xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 shadow-lg dark:shadow-black/30 rounded-xl p-8 flex flex-col md:flex-row gap-10 transition-all">
           
           {/* Pilih Kursi */}
@@ -78,7 +78,7 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
                         ? "bg-gray-300 text-gray-700 dark:bg-gray-700 dark:text-gray-400 border-0 cursor-not-allowed"
                         : isSelected
                         ? "bg-orange-400 border-0"
-                        : "bg-orange-500 text-white hover:bg-orange-600 hover:border-0"
+                        : "light:text-black hover:text-white dark:text-white hover:bg-orange-600 hover:border-0"
                     }`}
                   >
                     {seat.nomor_kursi}

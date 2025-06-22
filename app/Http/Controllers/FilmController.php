@@ -11,6 +11,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Endroid\QrCode\Builder\Builder;
+use Carbon\Carbon;
 
 class FilmController extends Controller
 {
@@ -96,21 +98,47 @@ class FilmController extends Controller
     }
 
     public function show2(Film $film, Request $request){
-        // $film->load(['schedules.theater']);
-        // return Inertia::render('jadwal',[
-        //     'film' => $film
-        // ]);
         $tanggal = $request->query('tanggal');
 
         // Ambil semua tanggal unik
-        $allDates = $film->schedules()
-            ->selectRaw('DISTINCT tanggal_tayang')
+        // $allDates = $film->schedules()
+        //     ->selectRaw('DISTINCT tanggal_tayang')
+        //     ->orderBy('tanggal_tayang')
+        //     ->pluck('tanggal_tayang')
+        //     ->toArray();
+
+        // Jika tidak ada tanggal di query, pakai yang paling awal
+        // $currentDate = $tanggal ?? $allDates[0] ?? now()->toDateString();
+
+        // ambil semua tanggal 2 minggu kedepan
+        $startDate = Carbon::today();
+        // $allDates = [];
+        // for ($i = 0; $i < 14; $i++) {
+        //     $allDates[] = $startDate->copy()->addDays($i)->toDateString();
+        // }
+
+        // Ambil tanggal tayang pertama dari schedules
+        $earliestScheduleDate = $film->schedules()
             ->orderBy('tanggal_tayang')
+            ->limit(1)
+            ->value('tanggal_tayang');
+
+        // Jika tidak ada jadwal, pakai hari ini sebagai fallback
+        // $startDate = $earliestScheduleDate ? Carbon::parse($earliestScheduleDate) : Carbon::today();
+
+        // Buat array tanggal selama 14 hari ke depan dari startDate
+        $allDates = [];
+        for ($i = 0; $i < 15; $i++) {
+            $allDates[] = $startDate->copy()->addDays($i)->toDateString();
+        }
+
+        $availableDates = $film->schedules()
+            ->selectRaw('DISTINCT tanggal_tayang')
+            ->whereIn('tanggal_tayang', $allDates)
             ->pluck('tanggal_tayang')
             ->toArray();
 
-        // Jika tidak ada tanggal di query, pakai yang paling awal
-        $currentDate = $tanggal ?? $allDates[0] ?? now()->toDateString();
+        $currentDate = $tanggal ?? $allDates[0];
 
         $schedules = $film->schedules()
             ->with('theater')
@@ -125,6 +153,7 @@ class FilmController extends Controller
                 'schedules' => $schedules,
             ],
             'allDates' => $allDates,
+            'availableDates' => $availableDates,
             'currentDate' => $currentDate,
         ]);
     }
@@ -158,6 +187,11 @@ class FilmController extends Controller
 
         $qrCode = QrCode::format('svg')->size(200)->generate($pemesanan->code_pemesanan);
         $qrCodeImage = 'data:image/svg+xml;base64,' . base64_encode($qrCode);
+        // $qrCode = Builder::create()
+        //     ->data($pemesanan->code_pemesanan)
+        //     ->size(200)
+        //     ->build();
+        // $qrCodeImage = 'data:image/svg+xml;base64,' . base64_encode($qrCode->getString());
 
         return Inertia::render('detail_ticket', [
             'pemesanan' => $pemesanan,

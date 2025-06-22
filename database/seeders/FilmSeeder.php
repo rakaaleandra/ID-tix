@@ -456,7 +456,8 @@ class FilmSeeder extends Seeder
         $Schedules = [];
 
         // Mulai dari 2023-05-15 selama 7 hari
-        $startDate = Carbon::create(2023, 5, 15);
+        $startDate = Carbon::today();
+        // $startDate = Carbon::create(2023, 5, 15);
 
         for ($x = 0; $x < 5; $x++) {
             $theater_id = $x + 1;
@@ -470,7 +471,7 @@ class FilmSeeder extends Seeder
             ];
 
             // Loop setiap hari selama 5 hari
-            for ($day = 0; $day < 5; $day++) {
+            for ($day = 0; $day < 6; $day++) {
                 $currentDate = $startDate->copy()->addDays($day)->format('Y-m-d');
 
                 foreach ($showtimes as [$film_id, $times]) {

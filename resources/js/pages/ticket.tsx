@@ -28,6 +28,7 @@ interface Pemesanan {
   schedule: Schedule
   status_pemesanan:'berhasil' | 'gagal' | 'masalah' | null
   created_at: string
+  code_pemesanan: string
 }
 
 interface PageProps {
@@ -134,10 +135,16 @@ const PesananIndex: React.FC = () => {
                         </div>
 
                         <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600 dark:text-gray-400">Ticket ID: #{pesanan.id}</span>
-                            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">View Details →</span>
-                          </div>
+                          {pesanan.status_pemesanan === 'berhasil' ? (
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-600 dark:text-gray-400">Ticket ID: #{pesanan.code_pemesanan}</span>
+                              <span className="text-orange-700 dark:text-orange-300 text-sm font-medium">View Details →</span>
+                            </div>
+                          ) : (
+                            <div className="flex justify-end items-center">
+                              <span className="text-orange-700 dark:text-orange-300 text-sm font-medium">View Details →</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
