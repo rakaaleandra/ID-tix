@@ -116,7 +116,12 @@ export default function Jadwal({ film, allDates, currentDate, availableDates }: 
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-100 dark:hover:bg-orange-800 hover:border-orange-500'
                     }`}
                   >
-                    {dayjs(date).format('dddd, D MMMM')}
+                    <p className='hidden lg:block'>
+                      {dayjs(date).format('dddd, D MMMM')}
+                    </p>
+                    <p className='lg:hidden'>
+                      {dayjs(date).format('D MMM')}
+                    </p>
                   </Link>
                 ) : (
                   <span
