@@ -10,6 +10,7 @@ interface Theater {
   map_bioskop: string
   deskripsi_bioskop : string
   no_telp_bioskop: string
+  gambar_bioskop: string
 }
 
 interface Props {
@@ -23,6 +24,11 @@ export default function DetailTheater({ theater }: Props) {
       <div className="min-h-screen bg-gray-50 dark:bg-main flex justify-center">
         <div className="container mx-8 my-12 max-w-7xl">
           {/* Theater Info Card */}
+          <img
+            src={`/storage/TheaterImage/${theater.gambar_bioskop}`}
+            alt={theater.nama_bioskop}
+            className='h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[600px] w-full object-cover rounded-lg shadow-md mb-8'
+          />
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden mb-8">
             <div className="md:flex">
               {/* Theater Info */}
@@ -40,22 +46,18 @@ export default function DetailTheater({ theater }: Props) {
                     <span className="text-gray-600 dark:text-gray-300">{theater.no_telp_bioskop}</span>
                   </div>
 
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-start space-x-3 mb-8">
                     <Clock className="h-5 w-5 text-orange-500 mt-0.5" />
                     <span className="text-gray-600 dark:text-gray-300">10:00 - 22:00 (Senin - Minggu)</span>
                   </div>
-
-                  <div className="flex items-start space-x-3">
-                    <Ticket className="h-5 w-5 text-orange-500 mt-0.5" />
-                    <div>
-                      <p className="text-gray-600 dark:text-gray-300">Regular: Rp50.000</p>
-                      <p className="text-gray-600 dark:text-gray-300">Premium: Rp75.000</p>
-                      <p className="text-gray-600 dark:text-gray-300">VIP: Rp100.000</p>
-                    </div>
-                  </div>
                 </div>
 
-                <div className="mt-8">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">About {theater.nama_bioskop}</h2>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {theater.deskripsi_bioskop}
+                </p>
+
+                {/* <div className="mt-8">
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Fasilitas</h2>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300 rounded-full text-sm">
@@ -74,7 +76,7 @@ export default function DetailTheater({ theater }: Props) {
                       Wheelchair Access
                     </span>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               {/* Map */}
@@ -92,19 +94,11 @@ export default function DetailTheater({ theater }: Props) {
           </div>
 
           {/* About Section */}
-          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">About {theater.nama_bioskop}</h2>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              {/* {theater.nama_bioskop} is a premier cinema destination located in {theater.lokasi_bioskop}. Featuring
-              state-of-the-art projection and sound systems, comfortable seating, and a wide selection of concessions,
-              we provide an unparalleled movie-going experience. Our theater is equipped with the latest technology
-              including Dolby Atmos sound systems and IMAX screens for the ultimate cinematic experience. */}
-              {theater.deskripsi_bioskop}
-            </p>
-          </div>
+          {/* <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 mb-8">
+          </div> */}
 
           {/* Nearby Amenities */}
-          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8">
+          {/* <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Nearby Amenities</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
@@ -132,7 +126,7 @@ export default function DetailTheater({ theater }: Props) {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </AppLayout>
