@@ -29,7 +29,7 @@ export default function Detail_Film({ film }: Props) {
     <MainLayout>
       <Head title={film.nama_film} />
       <div className="w-full min-h-screen bg-white dark:bg-main flex justify-center">
-        <div className="container mx-8 my-12 max-w-7xl">
+        <div className="container mx-4 md:mx-8 my-12 max-w-7xl">
           <header className="mb-8">
             {/* <h1 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold"></h1> */}
               {/* <h1 className="text-white text-3xl md:text-4xl font-bold">Now Showing</h1> */}
@@ -45,10 +45,10 @@ export default function Detail_Film({ film }: Props) {
               }
             })()}
           </header>
-          <div className="flex flex-row gap-8 lg:gap-12 mb-8">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 mb-8">
 
             {/* Poster Section */}
-            <div className="w-2/5">
+            <div className="w-full lg:w-2/5">
               <div className="overflow-hidden rounded-lg shadow-lg">
                 <img
                   src={`/storage/FilmPoster/${film.poster_film}`}
@@ -59,7 +59,7 @@ export default function Detail_Film({ film }: Props) {
             </div>
 
             {/* Content Section */}
-            <div className="h-fit w-3/5 flex flex-col gap-6 light:bg-white text-white dark:bg-gray-900 rounded-lg p-8 shadow">
+            <div className="h-fit w-full lg:w-3/5 flex flex-col gap-6 light:bg-white text-white dark:bg-gray-900 rounded-lg p-8 shadow">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{film.nama_film}</h2>
 
               {/* Film Details Table */}
@@ -104,7 +104,7 @@ export default function Detail_Film({ film }: Props) {
               </div>
 
               {/* Action Button */}
-              <div className="hidden lg:flex gap-8">
+              <div className="hidden lg:flex flex-col sm:flex-row gap-4 lg:gap-8">
                 <button
                   onClick={() => setShowTrailer(true)}
                   className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 transition-colors duration-200 h-12 w-full text-white rounded-lg font-bold text-lg shadow-lg hover:shadow-xl"
@@ -154,6 +154,7 @@ export default function Detail_Film({ film }: Props) {
           </div>
         </div>
       </div>
+      
       {/* Trailer Modal */}
       {showTrailer && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">

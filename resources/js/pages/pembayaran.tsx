@@ -55,41 +55,63 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
   return (
     <AppLayout>
       <Head title={`${film.nama_film} ${schedule.tanggal_tayang}`} />
-      <main className="w-full flex justify-center px-8 py-16 bg-gray-100 dark:bg-main min-h-screen transition-colors">
-        <div className="w-full max-w-7xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 shadow-lg dark:shadow-black/30 rounded-xl p-8 flex flex-col md:flex-row gap-10 transition-all">
+      <main className="w-full flex justify-center px-4 py-8 md:px-8 md:py-16 bg-gray-100 dark:bg-main min-h-screen transition-colors">
+        <div className="w-full max-w-7xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 shadow-lg dark:shadow-black/30 rounded-xl p-8 flex flex-col lg:flex-row gap-6 lg:gap-10 transition-all">
           
           {/* Pilih Kursi */}
-          <div className="md:w-2/3">
+          <div className="w-full lg:w-2/3">
             <h2 className="text-xl font-bold mb-4">Pilih Kursi</h2>
-            <div className="grid grid-cols-15 gap-3">
-              <div className="col-span-full flex justify-center items-center text-xl font-bold h-10 bg-gray-300 dark:bg-main text-gray-900 dark:text-white">
-                Layar
+            
+            {/* Container mobile */}
+            <div className="overflow-auto max-h-[60vh] lg:max-h-none">
+              <div className="min-w-[600px] lg:min-w-0">
+                <div className="grid grid-cols-15 gap-1">
+                  <div className="col-span-full flex justify-center items-center text-xl font-bold h-10 bg-gray-300 dark:bg-main text-gray-900 dark:text-white">
+                    Layar
+                  </div>
+                  {seats.map((seat) => {
+                    const isSelected = data.nomor_kursi.includes(seat.nomor_kursi)
+                    const isBooked = seat.status_booking
+                    return (
+                      <button
+                        key={seat.id}
+                        type="button"
+                        onClick={() => !isBooked && toggleKursi(seat.nomor_kursi)}
+                        className={`w-10 h-10 rounded-lg border border-orange-400 font-semibold transition text-xs ${
+                          isBooked
+                            ? "bg-gray-300 text-gray-700 dark:bg-gray-700 dark:text-gray-400 border-0 cursor-not-allowed"
+                            : isSelected
+                              ? "bg-orange-400 border-0 text-white"
+                              : "light:text-black hover:text-white dark:text-white hover:bg-orange-600 hover:border-0"
+                        }`}
+                      >
+                        {seat.nomor_kursi}
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
-              {seats.map((seat) => {
-                const isSelected = data.nomor_kursi.includes(seat.nomor_kursi);
-                const isBooked = seat.status_booking;
-                return (
-                  <button
-                    key={seat.id}
-                    type="button"
-                    onClick={() => !isBooked && toggleKursi(seat.nomor_kursi)}
-                    className={`w-12 h-12 rounded-lg border border-orange-400 font-semibold transition ${
-                      isBooked
-                        ? "bg-gray-300 text-gray-700 dark:bg-gray-700 dark:text-gray-400 border-0 cursor-not-allowed"
-                        : isSelected
-                        ? "bg-orange-400 border-0"
-                        : "light:text-black hover:text-white dark:text-white hover:bg-orange-600 hover:border-0"
-                    }`}
-                  >
-                    {seat.nomor_kursi}
-                  </button>
-                );
-              })}
+            </div>
+
+            {/* Legend untuk mobile */}
+            <div className="mt-4 flex flex-wrap gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-gray-300 dark:bg-gray-700 rounded border"></div>
+                <span className="text-gray-600 dark:text-gray-300">Terisi</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-orange-400 rounded"></div>
+                <span className="text-gray-600 dark:text-gray-300">Dipilih</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 border border-orange-400 rounded"></div>
+                <span className="text-gray-600 dark:text-gray-300">Tersedia</span>
+              </div>
             </div>
           </div>
 
           {/* Info & Form */}
-          <div className="md:w-1/3">
+          <div className="w-full lg:w-1/3">
             <h1 className="text-2xl font-bold mb-2">{film.nama_film}</h1>
             <p className="mb-1">Jadwal: {schedule.tanggal_tayang} - {schedule.jam_tayang}</p>
             <p className="mb-1">Harga Tiket: <strong>Rp{schedule.harga_tiket.toLocaleString()}</strong></p>
