@@ -83,7 +83,7 @@ class FilmController extends Controller
             'pemesanan_id' => $pemesanan->id,
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Pemesananmu berhasil!');
     }
 
     /**

@@ -4,6 +4,9 @@ import { type SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 import Dashboard from './dashboard';
 import { useRoute } from 'vendor/tightenco/ziggy';
+import { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 interface Film {
@@ -26,9 +29,35 @@ interface Props {
 }
 
 export default function Index({ films }: Props) {
+  const { props } = usePage<{ flash?: { success?: string } }>()
+  const [shown, setShown] = useState(false)
+
+  useEffect(() => {
+    if (props.flash?.success && !shown) {
+      toast.success(props.flash.success)
+      setShown(true)
+    }
+  }, [props.flash?.success, shown])
+
+  // console.log('FLASH MESSAGE:', successMessage)
+
   return (
     <AppLayout>
       <Head title="Home" />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        toastClassName={() =>
+          'bg-main text-white font-medium px-4 py-3 rounded shadow-lg border border-orange-500'
+        }
+      />
 
       {/* Hero Section */}
       <div className="relative w-full h-[32rem] overflow-hidden">
