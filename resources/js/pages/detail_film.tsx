@@ -45,10 +45,10 @@ export default function Detail_Film({ film }: Props) {
               }
             })()}
           </header>
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 mb-8">
+          <div className="flex flex-row gap-6 lg:gap-12 mb-8">
 
             {/* Poster Section */}
-            <div className="w-full lg:w-2/5">
+            <div className="w-2/5">
               <div className="overflow-hidden rounded-lg shadow-lg">
                 <img
                   src={`/storage/FilmPoster/${film.poster_film}`}
@@ -59,7 +59,7 @@ export default function Detail_Film({ film }: Props) {
             </div>
 
             {/* Content Section */}
-            <div className="h-fit w-full lg:w-3/5 flex flex-col gap-6 light:bg-white text-white dark:bg-gray-900 rounded-lg p-8 shadow">
+            <div className="h-fit w-3/5 flex flex-col gap-6 light:bg-white text-white dark:bg-gray-900 rounded-lg p-8 shadow">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{film.nama_film}</h2>
 
               {/* Film Details Table */}

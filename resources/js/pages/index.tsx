@@ -1,10 +1,10 @@
 import AppLayout from '@/layouts/app/main-layout';
 import Film from '@/assets/film1.jpg';
 import { type SharedData } from '@/types';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link, usePage, useRemember } from '@inertiajs/react';
 import Dashboard from './dashboard';
 import { useRoute } from 'vendor/tightenco/ziggy';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -29,16 +29,34 @@ interface Props {
 }
 
 export default function Index({ films }: Props) {
+  // const { props } = usePage<{ flash?: { success?: string } }>()
+  // const [shown, setShown] = useState(false)
+
+  // useEffect(() => {
+  //   if (props.flash?.success && !shown) {
+  //     toast.success(props.flash.success)
+  //     setShown(true)
+  //   }
+  // }, [props.flash?.success, shown])
   const { props } = usePage<{ flash?: { success?: string } }>()
-  const [shown, setShown] = useState(false)
+  const [hasShown, setHasShown] = useRemember(false, 'flash-toast-shown')
+  // const [flash, setFlash] = useState(props.flash) // <- lokal copy
+
+  // useEffect(() => {
+  //   if (flash?.success && !hasShown) {
+  //     toast.success(flash.success)
+  //     setHasShown(true)
+  //     setFlash({}) // kosongkan flash lokal
+  //   }
+  // }, [flash, hasShown])
 
   useEffect(() => {
-    if (props.flash?.success && !shown) {
+    if (props.flash?.success && !hasShown) {
       toast.success(props.flash.success)
-      setShown(true)
+      setHasShown(true)
+      props.flash.success = undefined
     }
-  }, [props.flash?.success, shown])
-
+  }, [props.flash?.success, hasShown])
   // console.log('FLASH MESSAGE:', successMessage)
 
   return (
