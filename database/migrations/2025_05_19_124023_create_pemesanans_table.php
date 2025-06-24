@@ -23,7 +23,7 @@ return new class extends Migration
             )->onDelete('cascade');
             $table->string('code_pemesanan')->unique();
             $table->string('bukti_bayar');
-            $table->enum('status_pemesanan', ['berhasil', 'gagal', 'masalah', 'null'])->default('null');
+            $table->enum('status_pemesanan', ['berhasil', 'gagal', 'masalah', 'null', 'kadaluarsa'])->default('null');
             $table->string('feedback')->nullable();
             $table->integer('total_bayar');
             $table->timestamps();

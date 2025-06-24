@@ -1,5 +1,6 @@
 import AppLayout from "@/layouts/app/main-layout"
 import QR from "@/assets/qr.jpg"
+import { Head } from "@inertiajs/react";
 
 interface Film {
   id: number;
@@ -24,7 +25,7 @@ interface Schedule {
 interface Pemesanan {
     id: number;
     schedule: Schedule;
-    status_pemesanan:'berhasil' | 'gagal' | 'masalah' | null
+    status_pemesanan:'berhasil' | 'gagal' | 'masalah' | 'kadaluarsa' | null
     feedback: string;
     total_bayar: number;
     created_at: string;
@@ -58,6 +59,11 @@ const getStatusBadge = (status: Pemesanan["status_pemesanan"]) => {
         label: "Trouble",
         bg: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
       }
+    case "kadaluarsa":
+      return {
+        label: "Expired",
+        bg: "bg-blue-100 text-gray-800 dark:bg-blue-900 dark:text-gray-200",
+      }
     default:
       return {
         label: "Pending",
@@ -69,6 +75,7 @@ const getStatusBadge = (status: Pemesanan["status_pemesanan"]) => {
 export default function Detail_Ticket({ pemesanan, tickets, qr }: Props) {
   return (
     <AppLayout>
+      <Head title="Ticket" />
       <div className="w-full min-h-screen flex justify-center bg-gray-100 dark:bg-main">
         <div className="flex flex-col gap-8 mx-8 my-12 container max-w-3xl">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Ticket</h1>

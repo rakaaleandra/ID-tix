@@ -1,6 +1,6 @@
 import AppLayout from "@/layouts/app/main-layout"
 import type React from "react"
-import { Link, usePage } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 import { MapPin, Calendar, Clock, Users } from "lucide-react"
 
 interface Film {
@@ -26,7 +26,7 @@ interface Schedule {
 interface Pemesanan {
   id: number
   schedule: Schedule
-  status_pemesanan:'berhasil' | 'gagal' | 'masalah' | null
+  status_pemesanan:'berhasil' | 'gagal' | 'masalah' | 'kadaluarsa' | null
   created_at: string
   code_pemesanan: string
 }
@@ -53,6 +53,11 @@ const getStatusBadge = (status: Pemesanan["status_pemesanan"]) => {
         label: "Trouble",
         bg: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
       }
+    case "kadaluarsa":
+      return {
+        label: "Expired",
+        bg: "bg-blue-100 text-gray-800 dark:bg-blue-900 dark:text-gray-200",
+      }
     default:
       return {
         label: "Pending",
@@ -66,6 +71,7 @@ const PesananIndex: React.FC = () => {
 
   return (
     <AppLayout>
+      <Head title="Tickets" />
       <main className="w-full min-h-screen bg-gray-50 dark:bg-main flex justify-center">
         <div className="container mx-8 my-12 max-w-4xl">
           {/* Header */}
