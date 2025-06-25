@@ -168,10 +168,10 @@ export default function Detail_Ticket({ pemesanan, tickets, qr }: Props) {
                           return (
                           <tr className="border-b border-gray-300 dark:border-gray-700 last:border-b-0">
                             <td className="py-2 text-gray-600 dark:text-gray-300 font-medium">Fail or Problem feedback</td>
-                            <td className="py-2 text-right text-gray-900 dark:text-white">
-                              <span className={"inline-flex items-center px-3 py-1 rounded-lg bg-gray-200 dark:bg-gray-700 max-w-96 text-sm text-gray-800 dark:text-gray-100"}>
+                            <td className="py-2 text-right text-gray-900 dark:text-white whitespace-normal break-words max-w-xs">
+                              {/* <span className={"inline-flex items-center px-3 py-1 rounded-lg bg-gray-200 dark:bg-gray-700 max-w-96 text-sm text-gray-800 dark:text-gray-100"}> */}
                                 {pemesanan.feedback || 'No feedback provided'}
-                              </span>
+                              {/* </span> */}
                             </td>
                           </tr>
                           )

@@ -1,6 +1,18 @@
 import AppLayout from "@/layouts/app/main-layout";
 import { Head, useForm } from "@inertiajs/react";
 import React, { useMemo } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button";
 
 interface Seats {
   id: number;
@@ -109,19 +121,56 @@ export default function Pembayaran({ film, schedule, seats }: Props) {
               </div>
             </div>
           </div>
-
+          
           {/* Info & Form */}
           <div className="w-full lg:w-1/3">
             <h1 className="text-2xl font-bold mb-2">{film.nama_film}</h1>
             <p className="mb-1">Jadwal: {schedule.tanggal_tayang} - {schedule.jam_tayang}</p>
-            <p className="mb-1">Harga Tiket: <strong>Rp{schedule.harga_tiket.toLocaleString()}</strong></p>
+            <p className="mb-2">Harga Tiket: <strong>Rp{schedule.harga_tiket.toLocaleString()}</strong></p>
+            <AlertDialog>
+              <AlertDialogTrigger className="mb-4">
+                <Button>
+                  Daftar Transaksi
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="text-xl mb-4">Daftar Transaksi</AlertDialogTitle>
+                  <AlertDialogDescription className="flex flex-col gap-2 text-gray-400 text-base">
+                    <div className="flex justify-between">
+                      <p>Mandiri</p>
+                      <p>1234567890</p>
+                    </div>
+                    <hr />
+                    <div className="flex justify-between">
+                      <p>BCA</p>
+                      <p>1234567890</p>
+                    </div>
+                    <hr />
+                    <div className="flex justify-between">
+                      <p>DANA</p>
+                      <p>1234567890</p>
+                    </div>
+                    <hr />
+                    <div className="flex justify-between">
+                      <p>E- WALLET</p>
+                      <p>1234567890</p>
+                    </div>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter className="mt-3">
+                  {/* <AlertDialogCancel>Cancel</AlertDialogCancel> */}
+                  <AlertDialogAction>Continue</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
             <p className="mt-2 font-semibold">
               Kursi dipilih: {data.nomor_kursi.join(", ") || "-"}
             </p>
             <p className="text-lg mt-1 font-bold text-amber-700 dark:text-amber-400">
               Total Harga: Rp{totalHarga.toLocaleString()}
             </p>
-
+            
             <form onSubmit={submit} className="mt-6 flex flex-col gap-4">
               <div>
                 <label className="block font-medium mb-1">Upload Bukti Bayar</label>

@@ -23,14 +23,18 @@ class FilmController extends Controller
     {
         return Inertia::render('index',[
             // 'films' => Film::all()
-            'films' => Film::where('tayang', true)->get()
+            'films' => Film::where('tayang', true)
+                ->where('tampil_web', true)
+                ->get()
         ]);
     }
 
     public function index2(){
         
         return Inertia::render('soon',[
-            'films' => Film::where('tayang', false)->get()
+            'films' => Film::where('tayang', false)
+                ->where('tampil_web', true)
+                ->get()
         ]);
     }
 
@@ -76,12 +80,12 @@ class FilmController extends Controller
         }
 
         Ticket::where('schedule_id', $request->schedule_id)
-        ->whereIn('nomor_kursi', $request->nomor_kursi)
-        ->where('status_booking', false)
-        ->update([
-            'status_booking' => true,
-            'pemesanan_id' => $pemesanan->id,
-        ]);
+            ->whereIn('nomor_kursi', $request->nomor_kursi)
+            ->where('status_booking', false)
+            ->update([
+                'status_booking' => true,
+                'pemesanan_id' => $pemesanan->id,
+            ]);
 
         return redirect()->route('home')->with('success', 'Pemesananmu berhasil!');
     }
