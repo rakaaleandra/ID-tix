@@ -169,9 +169,9 @@ export default function MainLayout({ children }: PropsWithChildren) {
                             descipsi
                         </div> */}
                         <div className='flex gap-4'>
-                            <Link href="" ><img src={Instagram} alt="" className='size-11 p-2 hover:bg-main rounded-lg' /></Link>
-                            <Link href="" ><img src={Facebook} alt="" className='size-11 p-2 hover:bg-main rounded-lg' /></Link>
-                            <Link href="" ><img src={Youtube} alt="" className='size-11 p-2 hover:bg-main rounded-lg' /></Link>
+                            <a href="https://www.instagram.com/rakaaleandra?igsh=aXFodWp4OXN2MG81&utm_source=qr" target="_blank" ><img src={Instagram} alt="" className='size-11 p-2 hover:bg-main rounded-lg' /></a>
+                            <a href="https://www.facebook.com/raka.aleandra" target="_blank" ><img src={Facebook} alt="" className='size-11 p-2 hover:bg-main rounded-lg' /></a>
+                            <a href="https://www.youtube.com/@rakaaleandra7164" target="_blank" ><img src={Youtube} alt="" className='size-11 p-2 hover:bg-main rounded-lg' /></a>
                         </div>
                     </div>
                     <div className='flex flex-col gap-1 items-center'>
