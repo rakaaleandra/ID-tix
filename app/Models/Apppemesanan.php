@@ -16,6 +16,7 @@ class Apppemesanan extends Model
         'jadwalTayang',
         'kursi',
         'jumlahKursi',
+        'codePemesanan',
         'tanggalPemesanan',
         'statusPemesanan',
         'feedback',

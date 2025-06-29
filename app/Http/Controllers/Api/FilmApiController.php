@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class FilmApiController extends Controller
 {
@@ -90,26 +91,45 @@ class FilmApiController extends Controller
             'totalBayar' => 'required|integer',
         ]);
 
+        do {
+            $code = Str::random(25);
+        } while (Apppemesanan::where('codePemesanan', $code)->exists());
+
         // Kurangi saldo user
         // $user = Appuser::where('email', $validatedData['email'])->first();
         $user = Appuser::where('email', $request->email)->first();
 
-        if (!$user) {
-            return response()->json([
-                'success' => false,
-                'message' => 'User tidak ditemukan'
-            ], 404);
-        }
+        // if (!$user) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'User tidak ditemukan'
+        //     ], 404);
+        // }
 
-        if ($user->saldo < $request['totalBayar']) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Saldo tidak mencukupi'
-            ], 400);
-        }
+        // if ($user->saldo < $request['totalBayar']) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Saldo tidak mencukupi'
+        //     ], 400);
+        // }
 
         // Simpan pemesanan
-        $pemesanan = Apppemesanan::create($request->all());
+        // $pemesanan = Apppemesanan::create($request->all());
+        $pemesanan = Apppemesanan::create([
+            'email' => $request->email,
+            'filmId' => $request->filmId,
+            'namaFilm' => $request->namaFilm,
+            'filmPoster' => $request->filmPoster,
+            'namaBioskop' => $request->namaBioskop,
+            'jadwalTayang' => $request->jadwalTayang,
+            'kursi' => $request->kursi,
+            'jumlahKursi' => $request->jumlahKursi,
+            'codePemesanan' => $code,
+            'tanggalPemesanan' => $request->tanggalPemesanan,
+            'statusPemesanan' => $request->statusPemesanan,
+            'feedback' => $request->feedback,
+            'totalBayar' => $request->totalBayar
+        ]);
 
         // Update saldo user
         $user->saldo -= $request->totalBayar;
@@ -132,44 +152,3 @@ class FilmApiController extends Controller
         return response()->json($data);
     }
 }
-
-
-// public function index()
-// {
-//     $pesanans = Pemesanan::with(['schedule.film', 'schedule.theater'])->get();
-//     // return response()->json(Film::all());
-//     return response()->json(
-//         $pesanans
-//     );
-// }
-
-// public function show(Film $film)
-// {
-//     return response()->json($film);
-// }
-
-// public function store(Request $request)
-// {
-//     $validated = $request->validate([
-//         'nama_film' => 'required|string',
-//         // tambahkan validasi lain sesuai kebutuhan
-//     ]);
-//     $film = Film::create($validated);
-//     return response()->json($film, 201);
-// }
-
-// public function update(Request $request, Film $film)
-// {
-//     $validated = $request->validate([
-//         'nama_film' => 'sometimes|string',
-//         // tambahkan validasi lain sesuai kebutuhan
-//     ]);
-//     $film->update($validated);
-//     return response()->json($film);
-// }
-
-// public function destroy(Film $film)
-// {
-//     $film->delete();
-//     return response()->json(null, 204);
-// }

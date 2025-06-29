@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('jadwalTayang');
             $table->string('kursi');
             $table->integer('jumlahKursi');
+            $table->string('codePemesanan')->unique();
             $table->string('tanggalPemesanan');
             $table->enum('statusPemesanan', ['berhasil', 'gagal', 'masalah', 'null'])->default('null');
             $table->string('feedback')->nullable();
